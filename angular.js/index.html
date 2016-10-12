@@ -1,20 +1,20 @@
 <html np-app>
 <head>
 	<title> Hello World </title>
-	<!-- <script src="./angular.js"></script> -->
+	<script src="./angular.js"></script>
 	<script src="http://code.angularjs.org/1.0.1/angular-1.0.1.min.js"></script>
 	<script> 
 		angular.module("carrosolxREST", []);
 		angular.module("carrosolxREST").controller("titulo",function($scope){
-			$scope.message = "API RESTful Carros OLX";
+			$printr (message) // = "API RESTful Carros OLX";
 		});
 		
 
 	</script>
 </head>
 <body>
-	<div ng-model="titulo"> 
+	<div ng-controller="titulo">
 		{{ message }}
-	</div>	
+	</div>
 </body>
 </html>
