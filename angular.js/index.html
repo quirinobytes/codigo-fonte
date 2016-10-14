@@ -31,7 +31,7 @@
 			$scope.titulo = "Carros OLX - crawler v.1.0"
 			
 			$scope.veiculos_array = [
-					{carro: "Vactra", ano: "1999", valor:"10.000,00"},
+					{carro: "Vectra", ano: "2000", valor:"10.000,00"},
 					{carro:"Monza",ano:"1990",  valor:"R$ 6.000,00"},
 					{carro: "Uno", ano: "1985",  valor:"R$ 4.000,00"}
 			];
@@ -50,6 +50,10 @@
 				delete $scope.veiculo;
 			};
 
+			//funcao chamada dentro do ng-click do button
+			$scope.excluirVeiculo = function(veiculo){
+				console.log(veiculo[1].carro);
+			};
 			$scope.classe = 'selecionado';
 
 		});
@@ -94,7 +98,7 @@
 		<option value=''> Selecione um fabricante </option> 	
 	</select>
 	<button class="btn btn-primary btn-block" ng-click="adicionarVeiculo(veiculo)" ng-disabled="! veiculo.carro || ! veiculo.ano || ! veiculo.valor"> Adicionar Veiculo 
-	<button class="btn btn-danger btn-block" ng-click="excluirVeiculo(veiculo)"> Excluir Veiculo 
+	<button class="btn btn-danger btn-block" ng-click="excluirVeiculo(veiculos_array)"> Excluir Veiculo 
 	</button>
 	
 
