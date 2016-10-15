@@ -51,10 +51,12 @@
 			};
 
 			//funcao chamada dentro do ng-click do button EXCLUIR
-			$scope.excluirVeiculo = function(veiculo){
-				var selecionados = veiculo.filter(function(veiculos){})
-					if (veiculos.selecionado) return veiculos;
-				console.log(selecionados);
+			$scope.excluirVeiculo = function(veiculos){
+				//console.log(veiculos);
+				$scope.veiculos_array = veiculos.filter(function(veiculo){
+					if (!veiculo.selecionado) return veiculo;
+						console.log(veiculo);
+				});
 
 			};
 
@@ -103,7 +105,7 @@
 		<option value=''> Selecione um fabricante </option> 	
 	</select>
 	<button class="btn btn-primary btn-block" ng-click="adicionarVeiculo(veiculo)" ng-disabled="! veiculo.carro || ! veiculo.ano || ! veiculo.valor"> Adicionar Veiculo 
-	<button class="btn btn-danger btn-block" ng-click="excluirVeiculo(veiculos)"> Excluir Veiculo 
+	<button class="btn btn-danger btn-block" ng-click="excluirVeiculo(veiculos_array)"> Excluir Veiculo 
 	</button>
 	
 
