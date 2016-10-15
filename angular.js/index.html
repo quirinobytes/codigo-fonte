@@ -42,7 +42,7 @@
 					{nome:"Ford", pais: "USA", categoria:"veiculos"},
 			];
 
-			//funcao chamada dentro do ng-click do button
+			//funcao chamada dentro do ng-click do button CADASTRAR
 			$scope.adicionarVeiculo = function(veiculo){
 				//console.log($scope.carro+$scope.ano+$scope.valor);
 				$scope.veiculos_array.push(angular.copy(veiculo));
@@ -50,10 +50,15 @@
 				delete $scope.veiculo;
 			};
 
-			//funcao chamada dentro do ng-click do button
+			//funcao chamada dentro do ng-click do button EXCLUIR
 			$scope.excluirVeiculo = function(veiculo){
-				console.log(veiculo[1].carro);
+				var selecionados = veiculos.filter()
+
+
+
 			};
+
+
 			$scope.classe = 'selecionado';
 
 		});
