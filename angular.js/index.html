@@ -29,7 +29,9 @@
 	<script> 
 		angular.module("carrosOLX", []);
 		angular.module("carrosOLX").controller("exibir-titulo",function($scope){
-			$scope.titulo = "Carros OLX - crawler v.1.5"
+			
+			// TITULO E VERSAO DO PROGRAMA #############
+			$scope.titulo = "Carros OLX - apportunity v.1.6"
 			
 			$scope.veiculos_array = [
 					{carro: "Vectra", ano: "2000", valor:"10.000,00"},
@@ -76,7 +78,7 @@
 		<h3> {{titulo}} </h3>
 
 <!--// DEBUG HEHEHEH 
-{{veiculos_array}}-->
+{{veiculos_array}} -->
 	
 	<table class='table'>
 		<tr> 
@@ -90,10 +92,10 @@
 
 
 	 <!-- so poe a classe selecionado quando veiculo.selecionado igual a true -->
-			<tr ng-class="{selecionado: veiculo.selecionado }" ng-repeat="veiculo in veiculos_array"> -->
-				<!--<td ng-repeat="(key,value) in veiculos">
+			<tr ng-class="{selecionado: veiculo.selecionado }" ng-repeat="veiculo in veiculos_array">
+				<!-- <td ng-repeat="(key,value) in veiculos">
 				{{ key + " - " + value}}
-			</td>-->
+			</td> -->
 			<td> <input type="checkbox" ng-model='veiculo.selecionado'/></td>
 			<td>{{veiculo.carro}} </td>
 			<td>{{veiculo.ano}} </td>
