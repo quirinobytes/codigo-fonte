@@ -19,9 +19,9 @@ SOFTWARE.
  
 #include <ESP8266WiFi.h>
  
-const char* ssid = "rocknet";
+const char* ssid = "m5";
 const char* password = "ontherocks";
-String buf[300];
+String buf[30];
  
 WiFiServer server(80);
  
@@ -95,19 +95,19 @@ void loop() {
  
   *buf += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\n";
   *buf += "<h4> Quirinometro @ H2HC </h4>";
-  *buf += "<p> <a href=\"?cronometro=1\"><button>1</button></a> ";
-  *buf += "- <a href=\"?cronometro=2\"><button>2</button></a> ";
-  *buf += "- <a href=\"?cronometro=3\"><button>3</button></a> ";
-  *buf += "- <a href=\"?cronometro=4\"><button>4</button></a> ";
-  *buf += "- <a href=\"?cronometro=5\"><button>5</button></a> ";
-  *buf += "- <a href=\"?cronometro=6\"><button>6</button></a> ";
-  *buf += "- <a href=\"?cronometro=7\"><button>7</button></a> ";
-  *buf += "- <a href=\"?cronometro=8\"><button>8</button></a> ";
-  *buf += "- <a href=\"?cronometro=9\"><button>9</button></a> ";
-  *buf += "- <a href=\"?cronometro=0\"><button>0</button></a> ";
-  
-  *buf += "<form action='.' method='get'> Valor: <input name='cronometro' type='number' maxlenght='4'>  <input type='submit' value='Enviar'> | <a href=\"?cronometro=\"><button>Apagar Display</button></a> </form> ";
-  
+  *buf += "<p> <a href=\"./?cronometro=1\"><button>1</button></a> ";
+  *buf += "- <a href=\"./?cronometro=2\"><button>2</button></a> ";
+  *buf += "- <a href=\"./?cronometro=3\"><button>3</button></a> ";
+  *buf += "- <a href=\"./?cronometro=4\"><button>4</button></a> ";
+  *buf += "- <a href=\"./?cronometro=5\"><button>5</button></a> ";
+  *buf += "- <a href=\"./?cronometro=6\"><button>6</button></a> ";
+  *buf += "- <a href=\"./?cronometro=7\"><button>7</button></a> ";
+  *buf += "- <a href=\"./?cronometro=8\"><button>8</button></a> ";
+  *buf += "- <a href=\"./?cronometro=9\"><button>9</button></a> ";
+  *buf += "- <a href=\"./?cronometro=0\"><button>0</button></a> ";
+    
+  *buf += "<form action='.' method='get'> Valor: <input name='cronometro' type='number' maxlenght='4'>  <input type='submit' value='Enviar'> | <a href=\"?cronometro=\"><button>Apagar Display</button></a>  </form> ";
+  *buf += "<BR> <a href=\"bomba\"><button>BOMBA</button></a> ";
    
  
   *buf += "<h4>Criado por Rafael Quirino </h4>";
@@ -136,6 +136,8 @@ void loop() {
     escreve(9);
   else if (req.indexOf("cronometro=0") != -1)
     escreve(0);
+  else if (req.indexOf("bomba") != -1)
+    bomba();
   else if (req.indexOf("cronometro=") != -1)
     zeratudo();
   else {
@@ -233,6 +235,20 @@ void escreve(int num){
          break;  
                    
    }
+}
+
+void bomba(){
+  int c=10,d;
+  for (c=9;c>=0;c--){
+    escreve(c);
+    for (d=0;d<100;d++){
+      digitalWrite(16, 1);
+     delay(1);
+      digitalWrite(16, 0);
+     delay(9);
+    }
+
+  }
 }
 
 void  zeratudo(){
