@@ -276,6 +276,8 @@ Serial.println(disparo);
   
     }
   }
+  delay(1);
+  digitalWrite(16, 0);
 }
 
 void  zeratudo(){
