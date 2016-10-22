@@ -19,15 +19,17 @@ SOFTWARE.
  
 #include <ESP8266WiFi.h>
  
-const char* ssid = "m5";
+const char* ssid = "rocknet";
 const char* password = "ontherocks";
 String buf[30];
+ String gatilho;
  
 WiFiServer server(80);
  
 void setup() {
   Serial.begin(250000);
   delay(10);
+  String gatilho;
 
   // prepare GPIO4
   pinMode(4, OUTPUT);
@@ -90,6 +92,14 @@ void loop() {
   String req = client.readStringUntil('\r');
   Serial.println(req);
   client.flush();
+
+  if (req.indexOf("cronometro=") != -1)
+   gatilho = req.indexOf("cronometro=");
+   gatilho = req[17];
+   int g = gatilho.toInt();
+   Serial.println("GATILHO:");
+   Serial.println(g);
+
  
   *buf = "";
  
@@ -107,7 +117,9 @@ void loop() {
   *buf += "- <a href=\"./?cronometro=0\"><button>0</button></a> ";
     
   *buf += "<form action='.' method='get'> Valor: <input name='cronometro' type='number' maxlenght='4'>  <input type='submit' value='Enviar'> | <a href=\"?cronometro=\"><button>Apagar Display</button></a>  </form> ";
-  *buf += "<BR> <a href=\"bomba\"><button>BOMBA</button></a> ";
+  *buf += "<BR> <a href=\"bomba=";
+  *buf += g;
+  *buf += "\"><button>BOMBA</button></a> ";
    
  
   *buf += "<h4>Criado por Rafael Quirino </h4>";
@@ -136,8 +148,15 @@ void loop() {
     escreve(9);
   else if (req.indexOf("cronometro=0") != -1)
     escreve(0);
-  else if (req.indexOf("bomba") != -1)
-    bomba();
+  else if (req.indexOf("bomba=") != -1){
+   gatilho = req[11];
+   int g = gatilho.toInt();
+   Serial.println("Chamando com");
+   Serial.println(g);
+   
+   bomba(g);
+  }
+    
   else if (req.indexOf("cronometro=") != -1)
     zeratudo();
   else {
@@ -237,17 +256,25 @@ void escreve(int num){
    }
 }
 
-void bomba(){
+void bomba(int disparo){
   int c=10,d;
-  for (c=9;c>=0;c--){
-    escreve(c);
-    for (d=0;d<100;d++){
-      digitalWrite(16, 1);
-     delay(1);
-      digitalWrite(16, 0);
-     delay(9);
-    }
+Serial.println("CHAMOU COM");
+Serial.println(disparo);
 
+  if (disparo > 0)
+  { 
+      c=disparo;
+    
+    for (;c>=0;c--){
+      escreve(c);
+      for (d=0;d<100;d++){
+        digitalWrite(16, 1);
+       delay(1);
+        digitalWrite(16, 0);
+       delay(9);
+      }
+  
+    }
   }
 }
 
