@@ -19,7 +19,7 @@ SOFTWARE.
  
 #include <ESP8266WiFi.h>
  
-const char* ssid = "rocknet";
+const char* ssid = "m5";
 const char* password = "ontherocks";
 String buf[30];
  String gatilho;
