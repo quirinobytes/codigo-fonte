@@ -19,7 +19,7 @@ SOFTWARE.
  
 #include <ESP8266WiFi.h>
  
-const char* ssid = "m5";
+const char* ssid = "rocknet";
 const char* password = "ontherocks";
 String buf[30];
  String gatilho;
@@ -104,7 +104,7 @@ void loop() {
   *buf = "";
  
   *buf += "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<!DOCTYPE HTML>\r\n<html>\r\n";
-  *buf += "<h4> Quirinometro @ H2HC </h4>";
+  *buf += "<h4> Counter Bomb @ H2HC </h4>";
   *buf += "<p> <a href=\"./?cronometro=1\"><button>1</button></a> ";
   *buf += "- <a href=\"./?cronometro=2\"><button>2</button></a> ";
   *buf += "- <a href=\"./?cronometro=3\"><button>3</button></a> ";
