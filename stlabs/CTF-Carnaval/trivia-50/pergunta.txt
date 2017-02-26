@@ -1,0 +1,10 @@
+Qual é o nome da política que permite aos servidores declararem que o
+navegador deve apenas interagir usando conexões seguras HTTPS? 
+
+Formato: shellter{POLITICA}
+
+resposta: shellter(HSTS)
+
+
+
+
