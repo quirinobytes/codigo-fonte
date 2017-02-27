@@ -1,0 +1,16 @@
+#!/usr/bin/expect -f
+
+set server zoom4
+
+spawn ssh -l tqi_rcastro $server passwd
+
+expect "*password:*"
+send "m0t0(#0$$\r"
+
+expect "*current*"
+send "m0t0(#0$$\r"
+expect "*New password*"
+send "Bi8wlYq4vl\r"
+expect "*Retype*"
+send "Bi8wlYq4vl\r"
+interact

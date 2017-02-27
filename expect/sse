@@ -1,0 +1,8 @@
+#!/usr/bin/expect
+
+set arg1 [lindex $argv 0]
+
+spawn ssh -o "StrictHostKeyChecking no" -l tqi_rcastro $arg1
+expect "*assword:"
+send "Bi8wlYq4vl\r"
+interact
