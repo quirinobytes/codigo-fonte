@@ -1,0 +1,6 @@
+O desenvolvedor desse joguinho cometeu alguns erros básicos na sua
+aplicação. Você consegue encontrar a flag? (60 points)
+Ambiente
+Para iniciar o seu ambiente de desafio, clique no botão direito
+
+Start
