@@ -1,0 +1,4 @@
+shellter{14mh4ck3r}
+shellter{HSTS}
+isadmin=false
+
