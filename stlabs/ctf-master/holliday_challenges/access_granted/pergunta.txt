@@ -1,0 +1,3 @@
+ nossos servidores foi invadido. Agora precisamos analisar os logs da nossa
+aplicação web pra descobrir qual a gravidade do ataque, e o que ele fez na
+máquima. (20 points)
