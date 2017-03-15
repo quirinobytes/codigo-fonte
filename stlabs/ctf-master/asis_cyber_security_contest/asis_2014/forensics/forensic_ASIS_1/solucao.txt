@@ -1,0 +1,9 @@
+
+
+Primeiro o arquivo no download é um 7zip
+
+Depois analisa-lo com Network Miner e extrair os arquivos.
+
+Procurar o ultimo arquivo chamado index.html
+
+Nele tem um código em python que precisa ser arrumado para achar a flag.

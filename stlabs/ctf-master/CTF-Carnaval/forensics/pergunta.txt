@@ -1,0 +1,6 @@
+Question:
+Um dos nossos servidores foi invadido. Agora precisamos analisar os logs da
+nossa aplicação web pra descobrir qual a gravidade do ataque, e o que ele
+fez na máquima.
+
+arquivo.txt em anexo nesse diretório.
