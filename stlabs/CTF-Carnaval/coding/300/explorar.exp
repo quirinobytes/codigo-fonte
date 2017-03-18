@@ -1,0 +1,142 @@
+#!/usr/bin/expect -f
+
+set arg1 [lindex $argv 0]
+puts $arg1
+
+set servidor "lab.shellterlabs.com"
+
+if { $arg1 == "" } {set porta 33178 } else {set porta $arg1}
+
+set sum 0;
+#set timeout 10
+
+set error [spawn nc $servidor $porta]
+#if "$error" { puts "erro= $error" ; exit 0 }
+expect "*\r\n"
+
+#salvar a saida depois do "of" na variavel $value
+set value "$expect_out(0,string)"
+
+puts "O saida é:$value"
+
+set value "scale=10;$value"
+
+puts $value
+
+set value [exec echo $value | dos2unix | bc ]
+puts $value
+set value $value
+set result [ expr [ format {%0.9f} $value ]]
+#set result [ expr $value ]
+#set result [spawn "echo $value | bc -l"]
+puts "O resultado é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida é2:$value"
+set value "scale=10;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #2# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #3# é:$value"
+set value "scale=10;$value"
+set value "scale=10;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #3# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #4# é:$value"
+set value "scale=10;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #4# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #5# é:$value"
+set value "scale=11;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #5# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+
+set value "$expect_out(0,string)"
+puts "O saida de #6# é:$value"
+set value "scale=11;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #6# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #7# é:$value"
+set value "scale=11;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #7# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #8# é:$value"
+set value "scale=11;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #8# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+puts "O saida de #9# é:$value"
+set value "scale=11;$value"
+set value [exec echo $value | dos2unix | bc ]
+set result [ expr [ format {%0.9f} $value ]]
+puts "O resultado de #9# é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
