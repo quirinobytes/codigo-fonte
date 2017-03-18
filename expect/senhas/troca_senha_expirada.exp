@@ -1,0 +1,25 @@
+#!/usr/bin/expect -f
+
+
+set server [lindex $argv 0]
+
+set fd1 [open "~/padrao1.passwd"] 
+set senha1 [read $fd1]
+set fd2 [open "~/padrao2.passwd"] 
+set senha2 [read $fd2]
+
+
+
+
+spawn ssh -l tqi_rcastro $server 
+
+expect "*password:*"
+send "$senha1\r"
+
+expect "*current*"
+send "$senha1\r"
+expect "*New password*"
+send "$senha2\r"
+expect "*Retype*"
+send "$senha2\r"
+interact

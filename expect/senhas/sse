@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+set arg1 [lindex $argv 0]
+
+set fd1 [open "~/padrao1.passwd"]
+set senha [read $fd1]
+
+
+spawn ssh -o "StrictHostKeyChecking no" -l tqi_rcastro $arg1
+expect "*assword:"
+send "$senha\r"
+expect "*$*"
+send "sudo su -"
+send "\r"
+interact

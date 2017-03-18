@@ -1,0 +1,14 @@
+la
+total 16
+drwxr-xr-x  2 root root 4096 Aug 22 21:41 [0m[01;34m.[0m
+drwxr-xr-x 10 root root 4096 Aug 22 20:28 [01;34m..[0m
+-rwxr-xr-x  1 root root  263 Aug 22 19:58 [01;32mpalindroma.sh[0m
+-rw-r--r--  1 root root   69 Aug 22 21:41 screenlog.0
+[m[31mroot[33m@[32mcentos [36m~/codigo-fonte/shell-script> [0;0mlasa[Krm screenlog.0 
+[31mroot[33m@[32mcentos [36m~/codigo-fonte/shell-script> [0;0ml
+total 8.0K
+-rwxr-xr-x 1 root root 263 Aug 22 19:58 [0m[01;32mpalindroma.sh[0m
+-rw-r--r-- 1 root root 424 Aug 22 21:42 screenlog.0
+[m[31mroot[33m@[32mcentos [36m~/codigo-fonte/shell-script> [0;0m
+[31mroot[33m@[32mcentos [36m~/codigo-fonte/shell-script> [0;0m
+[31mroot[33m@[32mcentos [36m~/codigo-fonte/shell-script> [0;0mlogout

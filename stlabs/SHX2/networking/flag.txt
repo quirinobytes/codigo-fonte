@@ -1,0 +1,11 @@
+root@centos ~/codigo-fonte/stlabs/lesson4/vinegere> ssh -l kevin
+lab.shellterlabs.com -p 33091 cat .th3_fl4g.file
+kevin@lab.shellterlabs.com's password:
+
+
+
+
+
+
+shellter{know_all_ssh_features}
+

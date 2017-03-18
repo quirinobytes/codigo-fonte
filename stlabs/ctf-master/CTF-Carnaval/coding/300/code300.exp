@@ -1,0 +1,54 @@
+#!/usr/bin/expect -f
+
+set arg1 [lindex $argv 0]
+puts $arg1
+
+set servidor "lab.shellterlabs.com"
+
+if { $arg1 == "" } {set porta 33178 } else {set porta $arg1}
+
+set sum 0;
+#set timeout 10
+
+set error [spawn nc $servidor $porta]
+#if "$error" { puts "erro= $error" ; exit 0 }
+expect "*\r\n"
+
+#salvar a said depois do "of" na variavel $value
+set value "$expect_out(0,string)"
+
+puts "O saida é:$value"
+set x 1
+
+while {$x==1 } {
+
+set value "scale=20;$value"
+puts $value
+
+set value [exec echo $value | dos2unix | bc -l ]
+puts $value
+set value $value
+set result [ expr [ format {%0.10f} $value ]]
+#set result [ expr $value ]
+#set result [spawn "echo $value | bc -l"]
+puts "O resultado é:$result"
+send -- $result
+send "\r"
+expect "*True)"
+expect "*"
+
+set value "$expect_out(0,string)"
+
+#if {[string match $value "shellter"]} { set x 0 }
+
+}
+
+
+
+
+
+
+
+
+
+

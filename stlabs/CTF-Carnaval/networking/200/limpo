@@ -1,0 +1,261 @@
+E..<..@.@..<...d.....B..AdA.......r.um.........
+."..........
+    192.168.0.1.bintec-admin > 192.168.0.100.55002: Flags [R.], cksum 0xf6c3 (correct), seq 0, ack 3815142618, win 0, length 0
+E..(..@.@..........d.;.......ft.P.......
+    192.168.0.1.5825 > 192.168.0.100.37750: Flags [R.], cksum 0x22e9 (correct), seq 0, ack 4252918651, win 0, length 0
+--
+    192.168.0.1.ewall > 192.168.0.100.57788: Flags [R.], cksum 0x58cd (correct), seq 0, ack 2224253389, win 0, length 0
+E..(..@.@..........d.0........i.P...X...
+    192.168.0.100.36512 > 192.168.0.1.encrypted_admin: Flags [S], cksum 0x5d6a (correct), seq 69516446, win 29200, options [mss 1460,sackOK,TS val 2269912 ecr 0,nop,wscale 7], length 0
+E..<.F@.@......d.......r.$........r.]j.........
+."..........
+    192.168.0.1.16001 > 192.168.0.100.60962: Flags [R.], cksum 0xaa22 (correct), seq 0, ack 1348339446, win 0, length 0
+E..(..@.@..........d>.."....P^..P...."..
+    192.168.0.1.encrypted_admin > 192.168.0.100.36512: Flags [R.], cksum 0xda44 (correct), seq 0, ack 69516447, win 0, length 0
+E..(..@.@..........d.r.......$..P....D..
+    192.168.0.1.sddp > 192.168.0.100.48484: Flags [R.], cksum 0x8f30 (correct), seq 0, ack 2835231740, win 0, length 0
+--
+............r..,.........
+."..........
+    192.168.0.1.sunwebadmin > 192.168.0.100.43642: Flags [R.], cksum 0x45ed (correct), seq 0, ack 1733735420, win 0, length 0
+E..(..@.@..........d"`.z....gV..P...E...
+    192.168.0.100.51972 > 192.168.0.1.etlservicemgr: Flags [S], cksum 0xf72a (correct), seq 873305793, win 29200, options [mss 1460,sackOK,TS val 2270192 ecr 0,nop,wscale 7], length 0
+--
+    192.168.0.1.wbem-rmi > 192.168.0.100.47014: Flags [R.], cksum 0x7c6f (correct), seq 0, ack 1247647812, win 0, length 0
+E..(..@.@..........d.c......J].DP...|o..
+    192.168.0.100.54476 > 192.168.0.1.rlm-admin: Flags [S], cksum 0xe5ea (correct), seq 1958287, win 29200, options [mss 1460,sackOK,TS val 2270197 ecr 0,nop,wscale 7], length 0
+E..<Bz@.@.v....d..................r............
+."..........
+--
+E..<.\@.@......d......#.#.e.......r.R5.........
+."..........
+    192.168.0.1.rlm-admin > 192.168.0.100.54476: Flags [R.], cksum 0x63e2 (correct), seq 0, ack 1958288, win 0, length 0
+E..(..@.@..........d............P...c...
+    192.168.0.100.42842 > 192.168.0.1.17988: Flags [S], cksum 0x1e15 (correct), seq 5940243, win 29200, options [mss 1460,sackOK,TS val 2270198 ecr 0,nop,wscale 7], length 0
+--
+    192.168.0.1.2196 > 192.168.0.100.59588: Flags [R.], cksum 0xf14a (correct), seq 0, ack 159924719, win 0, length 0
+E..(..@.@..........d........	.A.P....J..
+    192.168.0.100.49610 > 192.168.0.1.asip-webadmin: Flags [S], cksum 0xb04a (correct), seq 599398641, win 29200, options [mss 1460,sackOK,TS val 2270240 ecr 0,nop,wscale 7], length 0
+E..<..@.@..4...d.......7#.........r..J.........
+.". ........
+--
+E..<..@.@..C...d...... .flS.......r.H..........
+.".4........
+    192.168.0.1.asip-webadmin > 192.168.0.100.49610: Flags [R.], cksum 0x2e6d (correct), seq 0, ack 599398642, win 0, length 0
+E..(..@.@..........d.7......#...P....m..
+    192.168.0.100.34422 > 192.168.0.1.fpo-fns: Flags [S], cksum 0xbd1f (correct), seq 3807479089, win 29200, options [mss 1460,sackOK,TS val 2270260 ecr 0,nop,wscale 7], length 0
+--
+    192.168.0.1.winshadow > 192.168.0.100.36440: Flags [R.], cksum 0x747b (correct), seq 0, ack 2948165328, win 0, length 0
+E..(..@.@..........d...X......n.P...t{..
+    192.168.0.100.60600 > 192.168.0.1.radmin-port: Flags [S], cksum 0xa45b (correct), seq 3028440820, win 29200, options [mss 1460,sackOK,TS val 2270313 ecr 0,nop,wscale 7], length 0
+E..<..@.@..h...d.......#..V.......r..[.........
+.".i........
+--
+    192.168.0.1.rtsserv > 192.168.0.100.45250: Flags [R.], cksum 0x7631 (correct), seq 0, ack 264957336, win 0, length 0
+E..(..@.@..........d	...........P...v1..
+    192.168.0.1.radmin-port > 192.168.0.100.60600: Flags [R.], cksum 0x22c7 (correct), seq 0, ack 3028440821, win 0, length 0
+E..(..@.@..........d.#........V.P..."...
+    192.168.0.1.odmr > 192.168.0.100.57670: Flags [R.], cksum 0x1496 (correct), seq 0, ack 2268114847, win 0, length 0
+--
+    192.168.0.1.5862 > 192.168.0.100.37528: Flags [R.], cksum 0x8a83 (correct), seq 0, ack 1159640314, win 0, length 0
+E..(..@.@..........d........E...P.......
+    192.168.0.100.43778 > 192.168.0.1.ii-admin: Flags [S], cksum 0xb71c (correct), seq 265040348, win 29200, options [mss 1460,sackOK,TS val 2270354 ecr 0,nop,wscale 7], length 0
+E..<.N@.@.#....d..........1.......r............
+."..........
+--
+    192.168.0.1.30951 > 192.168.0.100.36904: Flags [R.], cksum 0x6b52 (correct), seq 0, ack 1253207814, win 0, length 0
+E..(..@.@..........dx..(....J.o.P...kR..
+    192.168.0.1.ii-admin > 192.168.0.100.43778: Flags [R.], cksum 0x35b1 (correct), seq 0, ack 265040349, win 0, length 0
+E..(..@.@..........d..........1.P...5...
+    192.168.0.1.5877 > 192.168.0.100.46406: Flags [R.], cksum 0x01b7 (correct), seq 0, ack 1599602896, win 0, length 0
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee0000>Nota: Os a
+    192.168.0.100.43240 > 192.168.0.1.http: Flags [.], cksum 0xf01a (correct), ack 10, win 229, options [nop,nop,TS val 2289010 ecr 579618], length 0
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee0000>Nota: Os a
+    192.168.0.100.43242 > 192.168.0.1.http: Flags [.], cksum 0x05de (correct), ack 10, win 229, options [nop,nop,TS val 2293958 ecr 584567], length 0
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee000
+    192.168.0.100.43298 > 192.168.0.1.http: Flags [.], cksum 0xcc74 (correct), ack 10, win 229, options [nop,nop,TS val 2299332 ecr 589941], length 0
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee000
+    192.168.0.100.43300 > 192.168.0.1.http: Flags [.], cksum 0x4333 (correct), ack 10, win 229, options [nop,nop,TS val 2299335 ecr 589944], length 0
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+</head><body><div>
+	<h1>Ajuda sobre Controle de Acesso - Esta....es</h1>
+
+<p>
+Nesta p..gina, .. poss..vel visualizar as seguintes informa....es:
+</p>
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee0000>Nota: Os a
+    192.168.0.100.43348 > 192.168.0.1.http: Flags [.], cksum 0x63b3 (correct), ack 1458, win 251, options [nop,nop,TS val 2319844 ecr 610451], length 0
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee000
+    192.168.0.1.http > 192.168.0.100.43350: Flags [FP.], cksum 0xa46c (correct), seq 1458:1993, ack 241, win 2896, options [nop,nop,TS val 612062 ecr 2321448], length 535
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee000
+    192.168.0.1.http > 192.168.0.100.43352: Flags [FP.], cksum 0xefa1 (correct), seq 1458:1993, ack 301, win 2896, options [nop,nop,TS val 612071 ecr 2321458], length 535
+--
+    192.168.0.100.56790 > 192.168.0.1.domain: 61323+ A? support.mozilla.org. (37)
+E..A;y@.@.}}...d.......5.-...............support.mozilla.org.....
+    192.168.0.100.qt-serveradmin > 192.168.0.1.domain: 64567+ AAAA? support.mozilla.org. (37)
+E..A;z@.@.}|...d.......5.-<Y.7...........support.mozilla.org.....
+    192.168.0.1 > 192.168.0.100: ICMP net 192.168.0.1 unreachable, length 73
+--
+    192.168.0.1 > 192.168.0.100: ICMP net 192.168.0.1 unreachable, length 73
+    192.168.0.100.qt-serveradmin > 192.168.0.1.domain: 64567+ AAAA? support.mozilla.org. (37)
+E..].v..@.`........d..~.....E..A;z@.@.}|...d.......5.-<Y.7...........support.mozilla.org.....
+    192.168.0.1.60093 > 239.255.255.250.ssdp: UDP, length 275
+--
+
+
+    192.168.0.100.qt-serveradmin > 192.168.0.1.domain: 64567+ AAAA? support.mozilla.org. (37)
+E..A>>@.@.z....d.......5.-<Y.7...........support.mozilla.org.....
+    192.168.0.1 > 192.168.0.100: ICMP net 192.168.0.1 unreachable, length 73
+--
+    192.168.0.1 > 192.168.0.100: ICMP net 192.168.0.1 unreachable, length 73
+    192.168.0.100.qt-serveradmin > 192.168.0.1.domain: 64567+ AAAA? support.mozilla.org. (37)
+E..].x..@.`........d..~.....E..A>>@.@.z....d.......5.-<Y.7...........support.mozilla.org.....
+    192.168.0.100.6164 > 192.168.0.1.domain: 5865+ AAAA? support.mozilla.org. (37)
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee0000>Nota: Os a
+    192.168.0.100.43358 > 192.168.0.1.http: Flags [.], cksum 0xe086 (correct), ack 10, win 229, options [nop,nop,TS val 4302833 ecr 2593580], length 0
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+    <P> <B><FONT size="4">O seu &quot;Caps Lock&quot; est.. ligado no seu teclado?</FONT></B> <BR>
+      O nome de usu..rio e senha devem estar em letras min..sculas, certifique-se que o &quot;Caps Lock&quot; esteje desligado em seu teclado e tente novamente.</P>
+    <P><B><FONT size="4">Esqueceu seu nome de usu..rio ou senha?</FONT></B><BR>
+      Por favor reiniciar o dispositivo para as configura....es de padr..o de f..brica, se voc.. esqueceu seu nome de usu..rio ou senha. O nome de usu..rio e a senha padr..o s..o definidas como <B>&quot;admin&quot;</B>.<BR>
+      <B><FONT color=#ee000
+    192.168.0.100.43418 > 192.168.0.1.http: Flags [.], cksum 0x3283 (correct), ack 10, win 229, options [nop,nop,TS val 4308143 ecr 2598890], length 0
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
+--
+var ssid_without_mac = 0;
+var wlan_wds = 1;
+
+var default_usrname = "admin";
+var default_password = "admin";
+var default_lan_ip = "192.168.0.1";
+
+var default_host_ip = "192.168.0.23";
