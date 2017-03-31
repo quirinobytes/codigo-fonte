@@ -2,5 +2,6 @@ shellter{14mh4ck3r}
 shellter{HSTS}
 isadmin=false
 shellter{notacaoPolonesaHackuda}
-
+shellter{reading-wide-chars}
+shellter{cr0n_m1sc0nf1gur4t10n}
 
