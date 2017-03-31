@@ -1,0 +1,7 @@
+procure os arquivos com permissao 666
+
+tem um script do ususario johny rodando no /usr/bin alguma coisa
+
+manda ele dar chmod 777 do seu diretorio pra nos vermos oq ele tem la pra
+nos.
+
