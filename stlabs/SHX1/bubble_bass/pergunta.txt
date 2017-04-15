@@ -1,0 +1,2 @@
+O Bubble Bass tem um serviço vulnerável. Você consegue explorar e ler o
+arquivo flag.txt? (60 points)
