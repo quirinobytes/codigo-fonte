@@ -1,0 +1,22 @@
+Script started on Sat 13 May 2017 12:38:51 AM BRT
+nao estou no zaroio.
+[?1034h[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mecho $(date)
+Sat May 13 00:38:56 BRT 2017
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mrafel [K[K[K[K[K[Kechop [K[K rafael\[K[K[K[K[K[K[K$RAFAEL=[C[C[C[C[C[C[C[C[C[C[C[C[1PRAFAEL=$RAFAEL=(RAFAEL=eRAFAEL=xRAFAEL=pRAFAEL=oRAFAEL=rRAFAEL=tRAFAEL= RAFAEL=[C[C[C[C[C[C[C1)[C$1)R1)A1)F1)A1)E1)L1)+1)`RAFAEL=$RAFAEL+1)[1PRAFAEL=$RAFAEL+1)[C[C[C[C[C[C[C[C[C[C[C[C[C[C`RAFAEL=$RAFAEL+1)[1PRAFAEL=$RAFAEL+1)[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C ; $RAFAEL[C[1P[1P[1P $RAFAEL[C $RAFAEL
+> )
+
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mecho $(export RAFAEL=$RAFAEL+1  $RAFAEL
+)[A[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1@)
+
+
+bash: syntax error near unexpected token `)'
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0m)echo $(export RAFAEL=$RAFAEL+1)  $RAFAEL[C[1@~[1P[1@"[C[C[C[C[C[C[1P[1@=[1@"
+
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mecho $(export RAFAEL="$RAFAEL+1")  $RAFAEL
+
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mecho $(export RAFAEL="$RAFAEL+1")  $RAFAEL
+
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mecho $(export RAFAEL="$RAFAEL+1")  $RAFAEL[C[C[C[C[C[C^C
+[31mroot[33m@[32mdev1 [36m~/codigo-fonte/stlabs/cryptoRave/ofuscar> [0;0mexit
+
+Script done on Sat 13 May 2017 12:40:34 AM BRT
