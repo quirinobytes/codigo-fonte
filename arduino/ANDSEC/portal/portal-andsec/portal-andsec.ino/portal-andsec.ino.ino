@@ -52,9 +52,9 @@ long lastConnectTry = 0;
 int status = WL_IDLE_STATUS;
 
 
-
-
-
+  int logged_in = false;
+  int bomb_planted = false;
+  int time_extended = 0 ;
 
 void setup() {
   delay(1000);
@@ -79,6 +79,9 @@ void setup() {
   server.on("/get", handleGet );
   server.on("/wifi", handleWifi );
   server.on("/challengerstatus", handleChallengerStatus );
+  server.on("/admin/b0mbsetuping", handleBombSetuping );
+  server.on("/admin/b0mbdefusing", handleBombDefusing );
+  server.on("/admin/timerextend", handleTimerExtend );
   server.on("/wifisave", handleWifiSave );
   server.on("/generate_204", handleRoot );  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
   server.on("/fwlink", handleRoot );  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
