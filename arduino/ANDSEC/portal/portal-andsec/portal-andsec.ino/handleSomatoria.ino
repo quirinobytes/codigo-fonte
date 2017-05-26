@@ -12,6 +12,7 @@ void handleSomatoria(){
   server.send(200, "text/html", ""); // Empty content inhibits Content-length header so we have to close the socket ourselves.
   server.sendContent("<html><head></head><body>");
   ShowMenu();
+  pontos_atual+=200;
   server.sendContent(
       "<h2> Congratulations, you pass. </h2>"
       "<p> Try to use some matematics to solve the bomb defuse problem.</p>"

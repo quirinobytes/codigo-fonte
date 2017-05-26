@@ -35,11 +35,13 @@ void handleGetBombStatus() {
         ) ;
   server.sendContent(String("<body> getting your time from server... wait: ")  );
   server.sendContent(resp);
-  server.sendContent("<p> and your local time: ");
-  static long atual_time = millis();
-  server.sendContent(String(atual_time - bomb_planted_time));
-  Serial.println(String(atual_time - bomb_planted_time));
-  server.sendContent(" segundos </p> </body></html>");
+  server.sendContent("<p> the rest time: <b>");
+
+  //conta o tempo e mostra na getbombstatus
+  long game_time = 3200 - (millis() - bomb_planted_time)/1000;
+  server.sendContent(String(game_time));
+  Serial.println(String(game_time));
+  server.sendContent(" </b> seconds </p> </body></html>");
   
   server.client().stop(); // Stop is needed because we sent no content length
 }
