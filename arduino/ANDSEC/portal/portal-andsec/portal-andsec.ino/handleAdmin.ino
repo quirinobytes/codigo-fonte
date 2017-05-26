@@ -13,43 +13,107 @@ void handleAdmin() {
     server.setContentLength(CONTENT_LENGTH_UNKNOWN);
     server.send(200, "text/html", ""); // Empty content inhibits Content-length header so we have to close the socket ourselves.
     server.sendContent("<html><head></head><body>");
+    includeCss();
     ShowMenu();
     server.sendContent(  
-      "<font aling='center'> <h1>Welcome to Remote Control Bomb - Admins Page!!!</h1> </font><br/>"
+      "<font aling='center'> <h2>Remote Control Bomb - Admin Page</h2> </font><br/>"
+      "welcome!"
+      "<br/><br/>"
+      
+      
       "<label> Timer Extented: <b>") ;
       server.sendContent(String(time_extended));
       server.sendContent(
       " </b> Times </label><br/>"
       
       "<form method='POST' action='/admin/timerextend'"
-      "<p> You could extend the time 3x, but lost 10% of points on each time. ></p> "
+      "<p> You could extend the time 3x, but lost 10% of points on each time.</p> "
       "Extend the time! <input type='submit' value='Extend'/></form>"
       
       "<form method='POST' action='/admin/b0mbsetuping'>"
       "Plant the Bomb! <input type='submit' value='Plant'/></form>"
       
       "<form method='POST' action='/admin/b0mbdefusing'>"
-      "Primeiros 6 digitos da somatoria de 100 numeros de 50 algarismos! <a href='http:'//download.it/arquivo.zip> file.zip </a>"
-      "<input type='text' maxlength='10' placeholder='int' name='answer'/>"
+      "Defuse the Bomb! <input type='submit' value='Defuse'/></form>"
+      "<form method='POST' action='/admin/somatoria'>"
+      );
+      if (fase1) server.sendContent("&#10004;&nbsp;&nbsp;");
+      server.sendContent(
+      "6 Primeiros digitos da somatoria de 100 numeros de 50 algarismos! <a href='http:'//download.it/arquivo.zip> donwload </a>"
+      "<input type='text' maxlength='6' placeholder='int' name='answer'/>"
       "<input type='submit' value='Answer'/></form>"
-
       "<form method='POST' action='/admin/fibonacci'>"
-      "fibonacci(1500) <input type='text' maxlength='10' placeholder='int' name='answer'/>"
-      "<input type='submit'  value='Answer'/></form>"
+      );
+      if (fase2) server.sendContent("&#10004;&nbsp;&nbsp;");
+      server.sendContent(
+      "fibonacci(1500) <input type='text' placeholder='int' name='answer'/>"
+      "<input type='submit'  value='Answer'/></form>"   
       
+      "<select class='form-control digit-picker' id='b4d1'>"
+      "<option class='brown' value='1'>Brown</option>"
+      "<option class='red' value='2'>Red </option>"
+      "<option class='orange' value='3'>Orange</option>"
+      "<option class='yellow' value='4'>Yellow</option>"
+      "<option class='green' value='5'>Green</option>"
+      "<option class='blue' value='6'>Blue</option>"
+      "<option class='purple' value='7'>Violet</option>"
+      "<option class='grey' value='8'>Gray</option>"
+      "<option class='white' value='9' selected=''>White</option>"
+      "</select>"
       
-      "<frameset>  <frame cols='50%' src='\get'> </frameset>"
-    );
+      "<select class='form-control digit-picker' id='b4d2'>"
+      "<option class='black' value='0'>Black</option>"
+      "<option class='brown' value='1'>Brown</option>"
+      "<option class='red' value='2'>Red </option>"
+      "<option class='orange' value='3'>Orange</option>"
+      "<option class='yellow' value='4'>Yellow</option>"
+      "<option class='green' value='5'>Green</option>"
+      "<option class='blue' value='6' selected=''>Blue</option>"
+      "<option class='purple' value='7'>Violet</option>"
+      "<option class='grey' value='8'>Gray</option>"
+      "<option class='white' value='9'>White</option>"
+      "</select>"
+
+      "<select class='form-control digit-picker' id='b4d3'>"
+      "<option class='black' value='x1'> Black</option>"
+      "<option class='brown' value='x10'> Brown</option>"
+      "<option class='red' value='x100'> Red</option>"
+      "<option class='orange' value='x1k'> Orange</option>"
+      "<option class='yellow' value='x10k'> Yellow</option>"
+      "<option class='green' value='x100k'> Green</option>"
+      "<option class='blue' value='x1M'> Blue</option>"
+      "<option class='purple' value='x10M'> Violet</option>"
+      "<option class='grey' value='x100M'> Gray</option>"
+      "<option class='white' value='x1G'> White</option>"
+      "<option class='gold' value='÷10'> Gold</option>"
+      "<option class='silver' value='100' selected=''> Silver</option>"
+      "</select>"
+
+      "<select class='form-control digit-picker' id='b4d4'>"
+      "<option class='brown' value=''> Brown </option>"
+      "<option class='red' value=''> Red </option>"
+      "<option class='orange' value=''> Orange </option>"
+      "<option class='yellow' value=''> Yellow </option>"
+      "<option class='green' value=''> Green </option>"
+      "<option class='blue' value=''> Blue </option>"
+      "<option class='purple' value=''> Violet </option>"
+      "<option class='grey' value=''> Gray </option>"
+      "<option class='gold' value='' selected=''> Gold</option>"
+      "<option class='silver' value=''>Silver</option>"
+      "</select>"
+);
 
   if (bomb_planted){
     server.sendContent(  
-      "<h1>Bomb Planted - Answer 3 questions !!!</h1>"
-      "<form method='POST' action='fibonacci'>"
+      "<br><br><h2> The game start and the Bomb is Planted! </h2>"
+      "<iframe src='/getbombstatus'>"
+      "<p>Your browser does not support iframes.</p>"
+      "</iframe>"
+      "<br><form method='POST' action='fibonacci'>"
       "fibonnaci (1500) ? <input type='text' placeholder='int' name='asnwer'/>"
       "<input type='submit' value=' Answer '/></form>"
       "<form method='POST' action='somatoria'>"
-      "Defuse the Bomb! <input type='submit' value='Defuse'/></form>"
-      "<frameset>  <frame cols='50%' src='\get'> </frameset>"
+      "<br>Defuse the Bomb! <input type='submit' value='Defuse'/></form>"
     );
   }
 
@@ -67,32 +131,6 @@ void handleAdmin() {
       }
     
     server.client().stop(); // Stop is needed because we sent no content length
-}
-
-void handleBombSetuping(){
-  if (logged_in == true ) { 
-      bomb_planted = true;
-      server.sendHeader("Location", "/admin", true);
-      server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-      server.sendHeader("Pragma", "no-cache");
-      server.sendHeader("Expires", "-1");
-      server.send ( 302, "text/plain", "");  // Empty content inhibits Content-length header so we have to close the socket ourselves.
-      server.client().stop(); // Stop is needed because we sent no content length
-  
-  }
-} 
-
-void handleBombDefusing(){
-  if (logged_in == true ) { 
-      bomb_planted = false;
-      server.sendHeader("Location", "/admin", true);
-      server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-      server.sendHeader("Pragma", "no-cache");
-      server.sendHeader("Expires", "-1");
-      server.send ( 302, "text/plain", "");  // Empty content inhibits Content-length header so we have to close the socket ourselves.
-      server.client().stop(); // Stop is needed because we sent no content length
-  
-  }
 }
 
 

@@ -1,11 +1,10 @@
 #include <ESP8266WiFi.h>
-#include <WiFiClient.h> 
+#include <WiFiClient.h>
 #include <ESP8266WebServer.h>
 #include <DNSServer.h>
 #include <ESP8266mDNS.h>
 #include <EEPROM.h>
 #include <RestClient.h>
-
 
 /*
  * This example serves a "hello world" on a WLAN and a SoftAP at the same time.
@@ -37,7 +36,7 @@ DNSServer dnsServer;
 // Web server
 ESP8266WebServer server(80);
 
-// Soft AP network parameters
+//Soft AP network parameters
 IPAddress apIP(192, 168, 10, 1);
 IPAddress netMsk(255, 255, 255, 0);
 
@@ -47,14 +46,17 @@ boolean connect;
 
 /** Last time I tried to connect to WLAN */
 long lastConnectTry = 0;
+long bomb_planted_time = 0;
 
 /** Current WLAN status */
 int status = WL_IDLE_STATUS;
 
-
+  //is the user logged
   int logged_in = false;
   int bomb_planted = false;
   int time_extended = 0 ;
+  int fase1=false,fase2=false,fase3=false;
+
 
 void setup() {
   delay(1000);
@@ -82,7 +84,11 @@ void setup() {
   server.on("/admin/b0mbsetuping", handleBombSetuping );
   server.on("/admin/b0mbdefusing", handleBombDefusing );
   server.on("/admin/timerextend", handleTimerExtend );
+  server.on("/admin/somatoria", handleSomatoria );
+  server.on("/admin/fibonacci", handleFibonacci );
   server.on("/wifisave", handleWifiSave );
+  server.on("/tips",handleTips );
+  server.on("/manual",handleManual );
   server.on("/generate_204", handleRoot );  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
   server.on("/fwlink", handleRoot );  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
   server.onNotFound ( handleNotFound );

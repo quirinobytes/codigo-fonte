@@ -13,10 +13,11 @@ void handleRoot() {
   server.sendContent("<html><head></head><body>");
   ShowMenu();
   server.sendContent(
-    "<font aling='center'> <h1>WELCOME TO ANDSEC - CTF!!</h1></font>"
-    "<p> You have to access the admin page to defuse the bomb, </p>"
-    "<p> when you do, you will start a timer that you have to asnwer 3 questions,</p>"
-    "<p> to take time past slower, or your time could be expire fast and the bomb exploded</p>"
+    "<font aling='center'> <h2>Welcome to ANDSEC - CTF!!</h2></font>"
+    "<p> You have to access the admin page to defuse the bomb, the password has 6 letters.</p>"
+    "<p> when you do it, you will start a timer in the bomb, and you have to asnwer 3 questions</p>"
+    "<p> to make the time past slower, or your time will run faster, and could expire and the bomb explode.</p>"
+    "<p> then you team loose the game, try to answer the questions, or be fast on defuse.</p>"
     );
   
   if (server.client().localIP() == apIP) {
