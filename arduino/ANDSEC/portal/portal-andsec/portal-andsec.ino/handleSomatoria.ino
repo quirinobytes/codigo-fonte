@@ -2,7 +2,7 @@ void handleSomatoria(){
 
 
 
- if ( (server.arg("answer") == "567") and logged_in) {
+ if ( (server.arg("answer") == "9831892672") and logged_in) {
 
   fase1 = true;
   server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");

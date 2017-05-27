@@ -44,9 +44,9 @@ void handleAdmin() {
       );
       if (fase1) server.sendContent("&#10004;&nbsp;&nbsp;");
       server.sendContent(
-      "6 Primeiros digitos da somatoria de 100 numeros "
+      "10 ultimos digitos da somatoria de 100 numeros"
       "<p> de 50 algarismos! <a href='/admin/arquivo.zip'> donwload </a>"
-      "<input type='text' maxlength='6' placeholder='int' name='answer'/>"
+      "<input type='text' placeholder='int' name='answer'/>"
       "<input type='submit' value='Answer'/></form>"
       "<form method='POST' action='/admin/fibonacci'>"
       );

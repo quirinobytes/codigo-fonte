@@ -13,7 +13,7 @@ void loadCredentials() {
   Serial.print("Recovered credentials: ");
   Serial.print(String(ssid) + "-> ");
   Serial.println(strlen(password)>0?"********":"<no password>");
-  Serial.println("Page Admin Credencial Recoreved: *************");
+  Serial.println("Recoreved Page Admin credencials: *************");
 }
 
 /** Store WLAN credentials to EEPROM */
