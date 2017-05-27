@@ -98,9 +98,9 @@ void setup() {
   server.on("/fwlink", handleRoot );  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
   server.onNotFound ( handleNotFound );
   server.begin(); // Web server start
-  Serial.println("HTTP server started");
+  Serial.println("HTTP server started on port: 80");
   loadCredentials(); // Load WLAN credentials from EEPROM to connect in network wifi APs
-  printFlag();
+  printFlag2();
   connect = strlen(ssid) > 0; // Request WLAN connect if there is a SSID
 }
 

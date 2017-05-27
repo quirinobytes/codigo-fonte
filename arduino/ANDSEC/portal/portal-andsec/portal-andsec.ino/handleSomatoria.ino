@@ -13,14 +13,15 @@ void handleSomatoria(){
   server.sendContent("<html><head></head><body>");
   ShowMenu();
   pontos_atual+=200;
-  server.sendContent(
-      "<h2> Congratulations, you pass. </h2>"
-      "<p> Try to use some matematics to solve the bomb defuse problem.</p>"
-      "<p> maybe ohm could help you.</p>"
-      "<a href='/admin'> <button> OK </button> </a>"
-      "<br>"
-      
-  );
+  server.sendContent("<h2> Congratulations, you pass.</h2> <br><br> Now, get your serial number.");
+
+  Serial.print(
+      " "
+      "Try to use some matematics to may help you, and defuse the bomb."
+      "could kirshoff or ohms help you?"
+      ""
+      ""
+      );
  }
  else{
             server.sendHeader("Location", "/admin", true);

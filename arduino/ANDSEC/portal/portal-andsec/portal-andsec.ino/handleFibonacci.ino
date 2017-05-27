@@ -1,6 +1,6 @@
 void handleFibonacci(){
 
-String resultado = "123456";
+String resultado = "";
 
  if ( (server.arg("answer") == resultado) and logged_in) {
 
