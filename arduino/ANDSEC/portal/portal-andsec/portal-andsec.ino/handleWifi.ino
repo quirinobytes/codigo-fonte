@@ -10,7 +10,7 @@ void handleWifi() {
   ShowMenu();
   server.sendContent("<h1>Wifi config</h1>");
   if (server.client().localIP() == apIP) {
-    server.sendContent(String("<p>You are connected through the soft AP: ") + softAP_ssid + "</p>");
+    server.sendContent(String("<br> <button> Bomb Wifi Connect </button> <br><p>You are connected through the soft AP: ") + softAP_ssid + "</p>");
   } else {
     server.sendContent(String("<p>You are connected through the wifi network: ") + ssid + "</p>");
   }
