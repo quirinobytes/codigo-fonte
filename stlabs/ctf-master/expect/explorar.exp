@@ -1,7 +1,7 @@
 #!/usr/bin/expect
 
 set servidor "lab.shellterlabs.com"
-set porta 33343 
+set porta 32997  
 
 
 set sum 0;
