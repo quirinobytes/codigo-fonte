@@ -1,10 +1,9 @@
 
 void handleAdmin() {
-  
+  String login_user;
   Serial.println("Remote Control Bomb - Admins Page");
-  Serial.println("User="+ server.arg("u") + "\nPass=" + server.arg("p") );
  
-  if ( ((server.arg("u") == "admin") and (server.arg("p") == "hacktheplanet")) or logged_in) {
+  if ( (server.arg("u") == "admin") and (server.arg("p") == "hacktheplanet") or logged_in) {
     logged_in = true;
     Serial.println("User " + server.arg("u")+" logged in!");
     
@@ -53,7 +52,7 @@ void handleAdmin() {
       );
       if (fase2) server.sendContent("&#10004;&nbsp;&nbsp;");
       server.sendContent(
-      "fibonacci(1754) <input type='text' placeholder='int' name='answer'/>"
+      "fibonacci(1000) <input type='text' placeholder='int' name='answer'/>"
       "<input type='submit'  value='Answer'/></form>"   
       
       "<select class='form-control digit-picker' id='b4d1'>"

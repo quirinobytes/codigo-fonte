@@ -82,13 +82,13 @@ void loop() {
   Serial.println("new client=waiting");
   while(!client.available()){
     //para avisar a cada requisicao pisca o vermelho (16) como se fosse o HD trabalhando.
-   // Serial.println("SEM REQUISICAO ->> PISCA LUZ");
+    //Serial.println("SEM REQUISICAO ->> PISCA LUZ");
     digitalWrite(16, 0);
     delay(1);
     digitalWrite(16, 1);
       
   }
-    Serial.println("new client=sucess");
+  Serial.println("new client=sucess");
   String req = client.readStringUntil('\r');
   Serial.println(req);
   client.flush();

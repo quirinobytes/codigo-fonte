@@ -31,7 +31,7 @@ void handleRoot() {
     "<p> You will need to connect to bomb wifi that that password already been saved. </p>"
     "<p> If you connect to another wifi, you will lost that password, to recover the </p>"
     "<p> password click here <a href='/wifi'> recover bomb password </a>.   </p>"
-    "<p> or try login admin pages <a href='/admin'> Remote Control Admin </a>.</p>"
+    "<p> or try login admin pages <a href='/admin'> Remote Control Web </a>.</p>"
     "<form method='POST' action='admin'><h5>Login:</h5>");
     //server.sendContent(login_user);
     retry = login_user.length();

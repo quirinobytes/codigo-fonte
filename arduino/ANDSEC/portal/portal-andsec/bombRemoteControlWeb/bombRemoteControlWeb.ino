@@ -19,13 +19,13 @@
  */
 
 /* Set these to your desired softAP credentials. They are not configurable at runtime */
-const char *softAP_ssid = "CASA_4";
+const char *softAP_ssid = "DefuseTheBomb";
 const char *softAP_password = "12345678";
 
 /* hostname for mDNS. Should work at least on windows. Try http://remotecontrol */
 const char *myHostname = "remotecontrol";
 
-/* Don't set this wifi credentials. They are configurated at runtime and stored on EEPROM */
+/* Don't set this wifi client credentials. They are configurated at runtime and stored on EEPROM */
 char ssid[32] = "";
 char password[32] = "";
 
@@ -37,9 +37,10 @@ DNSServer dnsServer;
 ESP8266WebServer server(80);
 
 //Soft AP network parameters
-IPAddress apIP(192, 168, 10, 1);
+IPAddress apIP(192, 168, 99, 1);
 IPAddress netMsk(255, 255, 255, 0);
-
+IPAddress dns(192, 168, 1, 1);
+IPAddress gateway(192,168,1,1);
 
 /** Should I connect to WLAN asap? */
 boolean connect;
@@ -57,7 +58,7 @@ int status = WL_IDLE_STATUS;
   int time_extended = 0 ;
   int fase1=false,fase2=false,fase3=false;
   int pontos_atual=0,pontuacao_maxima=1000;
-  String login_user;
+  WiFiClient client;  // Make a HTTP request:
 
 void setup() {
   delay(100); //1000
@@ -71,7 +72,7 @@ void setup() {
   WiFi.softAPConfig(apIP, apIP, netMsk);
   WiFi.softAP(softAP_ssid, softAP_password);
   delay(200); // Without delay I've seen the IP address blank //500
-  Serial.print("AP IP address setup: ");
+  Serial.print("AP WIFI address: ");
   Serial.println(WiFi.softAPIP());
 
   /* Setup the DNS server redirecting all the domains to the apIP */  
@@ -83,6 +84,7 @@ void setup() {
   server.on("/admin", handleAdmin );
   server.on("/getbombstatus", handleGetBombStatus );
   server.on("/get", handleGet );
+  server.on("/bomb", handleBomb );
   server.on("/wifi", handleWifi );
   server.on("/challengerstatus", handleChallengerStatus );
   server.on("/admin/b0mbsetuping", handleBombSetuping );
@@ -91,7 +93,8 @@ void setup() {
   server.on("/admin/somatoria", handleSomatoria );
   server.on("/admin/fibonacci", handleFibonacci );
   server.on("/admin/arquivo.zip", handleArquivoZip );
-  server.on("/wifisave", handleWifiSave );
+  server.on("/admin/wifisave", handleWifiSave );
+  server.on("/admin/bombwificonnect", handleBombWifiClientConnect);
   server.on("/tips",handleTips );
   server.on("/manual",handleManual );
   server.on("/generate_204", handleRoot );  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
@@ -109,8 +112,9 @@ void connectWifi() {
   WiFi.disconnect();
   WiFi.begin ( ssid, password );
   int connRes = WiFi.waitForConnectResult();
-  Serial.print ( "connRes: " );
+  Serial.print ( "connResult: " );
   Serial.println ( connRes );
+   
 }
 
 void loop() {
@@ -122,7 +126,7 @@ void loop() {
   }
   {
     int s = WiFi.status();
-    if (s == 0 && millis() > (lastConnectTry + 60000) ) {
+    if (s == 0 && millis() > (lastConnectTry + 2000) ) {
       /* If WLAN disconnected and idle try to connect */
       /* Don't set retry time too low as retry interfere the softAP operation */
       connect = true;
@@ -133,10 +137,13 @@ void loop() {
       status = s;
       if (s == WL_CONNECTED) {
         /* Just connected to WLAN */
-        Serial.println ( "" );
-        Serial.print ( "Connected to " );
+        
+       
+        Serial.println ("IP=192.168.4.2 \n DNS=192.168.4.1");
+        Serial.print ( "Connected to wirelles wifi " );
         Serial.println ( ssid );
-        Serial.print ( "IP address: " );
+        Serial.print ( "BOMBNETWORK IP address: " );
+        
         Serial.println ( WiFi.localIP() );
 
         // Setup MDNS responder
