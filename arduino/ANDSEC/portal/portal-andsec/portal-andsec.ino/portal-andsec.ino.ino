@@ -19,15 +19,15 @@
  */
 
 /* Set these to your desired softAP credentials. They are not configurable at runtime */
-const char *softAP_ssid = "CASA_4";
-const char *softAP_password = "12345678";
+const char *softAP_ssid = "DEFUSETHEBOMB";
+const char *softAP_password = "";
 
 /* hostname for mDNS. Should work at least on windows. Try http://remotecontrol */
 const char *myHostname = "remotecontrol";
 
 /* Don't set this wifi credentials. They are configurated at runtime and stored on EEPROM */
-char ssid[32] = "";
-char password[32] = "";
+char ssid[32] = "rocknet";
+char password[32] = "hacktheplanet";
 
 // DNS server
 const byte DNS_PORT = 53;
@@ -99,7 +99,7 @@ void setup() {
   server.onNotFound ( handleNotFound );
   server.begin(); // Web server start
   Serial.println("HTTP server started on port: 80");
-  loadCredentials(); // Load WLAN credentials from EEPROM to connect in network wifi APs
+  //loadCredentials(); // Load WLAN credentials from EEPROM to connect in network wifi APs
   printFlag2();
   connect = strlen(ssid) > 0; // Request WLAN connect if there is a SSID
 }
