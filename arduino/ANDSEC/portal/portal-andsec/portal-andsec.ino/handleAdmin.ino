@@ -145,7 +145,9 @@ void handleTimerExtend(){
   if (logged_in == true ) { 
       if (time_extended < 3) {
         time_extended += 1;
+        //aumenta o tempo em 20%
         bomb_planted_time +=(millis()-bomb_planted_time)*20/100;
+        //a pontuacao maxima recebe uma pena
         pontuacao_maxima += (pontuacao_maxima*-1)*20/100;
       }
       
