@@ -13,7 +13,7 @@ void handleRoot() {
   server.sendContent("<html><head>"
   "<style type='text/css'> "
   " #textbox {  background-color: white; margin:20px; padding:0; font: 100%/1.3 arial,helvetica,sans-serif; background:#3F6A8A; } "
-  " #titulo { background-color: red; margin-top:10px; margin-left:20px; padding:0; font: 130%/1.3 arial,helvetica,sans-serif; } "
+  " #titulo { background-color: red; margin-top:10px; margin-botton:10px; margin-left:20px;margin-right:20px; padding:0; font: 130%/1.3 arial,helvetica,sans-serif; } "
   
   
   " </style> "
