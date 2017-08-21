@@ -1,23 +1,23 @@
 void ShowMenu(){
 if (logged_in){
    server.sendContent(
-      "<a href=.\> Home </a> | "
+      "<div id='menu'> <a href=.\> | Home </a> | "
       "<a href=\wifi> Wifi Config </a> | "
       "<a href=\manual> Manual </a> | "
       "<a href=\challengerstatus> Challenger Status </a> | "
       "<a href=\tips> Tips </a> | "
-      "<a href=\about> About </a> <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; User: <b> admin </b>"
+      "<a href=\about> About </a> | &nbsp;&nbsp;&nbsp; user:<b>admin</b></div> "
       );
   
 }
 else{
    server.sendContent(
-      "<a href=.\> Home </a> | "
+      "<div id='menu'> <a href=.\> Home </a> | "
       "<a href=/wifi> Config Wifi </a> | "
       "<a href=/manual> Manual </a> | "
       "<a href=/challengerstatus> Challenger Status </a> | "
       "<a href=/tips> Tips </a> | "
-      "<a href=/about> About </a> "
+      "<a href=/about> About </a> |</div> "
       );
 
 }
@@ -47,7 +47,14 @@ void includeCss(){
 "     </style>"
   );
 
-  
+ server.sendContent("<html><head>"
+  "<style type='text/css'> "
+  " #textbox {  background-color: white; margin:20px; padding:50px; font: 100%/1.3 arial,helvetica,sans-serif; background:#3F6A8A; color:white; } "
+  " #menu {font: 100%/1.3 arial,helvetica,sans-serif; text-align:center; color:black; } "
+  " #titulo { background-color: red; margin-top:5px; margin-left:20px; padding:0; font: 130%/1.3 arial,helvetica,sans-serif; }   "
+  " #login {align:center;  background-color: white; margin-top:10px; margin-botton:20px; margin-left:30%;  margin-right:30%; border:2px; spacing:0px; padding:10px; font: 100%/1.3 arial,helvetica,sans-serif; }   "
+  " </style> ");
+ 
 }
 
 void includeJS(){

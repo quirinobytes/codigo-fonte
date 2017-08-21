@@ -12,8 +12,9 @@ void handleRoot() {
   server.send(200, "text/html", ""); // Empty content inhibits Content-length header so we have to close the socket ourselves.
   server.sendContent("<html><head>"
   "<style type='text/css'> "
-  " #textbox {  background-color: white; margin:20px; padding:0; font: 100%/1.3 arial,helvetica,sans-serif; background:#3F6A8A; } "
-  " #titulo { background-color: red; margin-top:10px; margin-botton:10px; margin-left:20px;margin-right:20px; padding:0; font: 130%/1.3 arial,helvetica,sans-serif; } "
+  " #textbox {  background-color: white; margin:20px; padding:50px; font: 100%/1.3 arial,helvetica,sans-serif; background:#3F6A8A; } "
+  " #titulo { background-color: silver; margin-top:5px; margin-left:20px; padding:0; font: 130%/1.3 arial,helvetica,sans-serif; }   "
+  " #login {text-align:justify; border-color:black; background-color:#F0F0F0; margin-top:10px; margin-left:30%;  margin-right:30%; border:2px; padding:10px; font: 100%/1.3 arial,helvetica,sans-serif; }   "
   
   
   " </style> "
@@ -21,6 +22,7 @@ void handleRoot() {
   
   
   "</head><body bgcolor='#FFFFFF' text='white'  >");
+  includeCss();
   ShowMenu();
   server.sendContent(
     "<div id='textbox'> <div id='titulo'> <h3> H2HC - BOMB CTF! </h3> </div> "
@@ -43,15 +45,15 @@ void handleRoot() {
     "<p> If you connect to another wifi, you will lost that password, to recover the </p>"
     "<p> password click here <a href='/wifi'> recover bomb password </a>.   </p>"
     "<p> or try login admin pages <a href='/admin'> Remote Control Admin </a>.</p>"
-    "<form method='POST' action='admin'><h5>Login:</h5>");
+    "<div id='login'> <div id='titulo' margin-top:0px; > <h5>Login:</h5></div> <form method='POST' action='admin'>");
     //server.sendContent(login_user);
     retry = login_user.length();
     if (retry > 0 ) {
         server.sendContent(
-          "User: <input type='text' placeholder='"+ login_user +"' name='u'/>"
-          "<br/> Password:<input type='password' placeholder='password' name='p'/>"
+          "<input type='text' placeholder='"+ login_user +"' name='u'/>"
+          "<input type='password' placeholder='password' name='p'/>"
           "<br/> <input type='submit' value='Login'/></form>"
-          "</body></html>"
+          "</div></body></html>"
         );  
     }
     else{

@@ -50,6 +50,7 @@ void handleGetBombStatus() {
 void handleBombSetuping(){
   if (logged_in == true ) { 
       bomb_planted = true;
+      fase1=true;
       bomb_planted_time = millis();
       server.sendHeader("Location", "/admin", true);
       server.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");

@@ -7,7 +7,7 @@ Exemplo b�sico de conex�o a Konker Plataform via MQTT, baseado no https://gi
  
 // Vamos primeiramente conectar o ESP8266 com a rede Wireless (mude os parâmetros abaixo para sua rede).
 const char* ssid = "rocknet";
-const char* password = "ontherocks";
+const char* password = "hacktheplanet";
 int randomNumber =0;
  
 //Criando os objetos de conexão com a rede e com o servidor MQTT.

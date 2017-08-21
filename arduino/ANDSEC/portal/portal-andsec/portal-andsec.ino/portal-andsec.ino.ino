@@ -55,9 +55,11 @@ int status = WL_IDLE_STATUS;
   int logged_in = false;
   int bomb_planted = false;
   int time_extended = 0 ;
-  int fase1=false,fase2=false,fase3=false;
+  int fase1=false,fase2=false,fase3=false,fase4=false,fase5=false;
   int pontos_atual=0,pontuacao_maxima=1000;
   String login_user;
+  boolean somatoria_answered;
+  int randomNumber =0;
 
 void setup() {
   delay(100); //1000
@@ -102,6 +104,7 @@ void setup() {
   //loadCredentials(); // Load WLAN credentials from EEPROM to connect in network wifi APs
   printFlag2();
   connect = strlen(ssid) > 0; // Request WLAN connect if there is a SSID
+  prepararGPIO();
 }
 
 void connectWifi() {
@@ -114,6 +117,16 @@ void connectWifi() {
 }
 
 void loop() {
+
+  //randomNumber = random(1,50);
+  //Serial.println(randomNumber);
+
+  if (bomb_planted)
+      girar(0);
+  //pisca();
+  //pisca();
+  //pisca();
+  
   if (connect) {
     Serial.println ( "Connect requested" );
     connect = false;
