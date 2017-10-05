@@ -10,9 +10,11 @@ bot = telepot.Bot("389133150:AAFqZmu_2WMCHRBpUlv2DyFeCW2Hn6CEwQc")
 global_resposta = ""
 
 def rec(msg):
+	print (msg)
 	chat = msg['chat']
 	idChat = chat['id']
 	mensagemTxt = msg['text']
+	#print ("MESSAGE-CHAT=" + chat + " ID=" + idchat)
 	#arrumar essa funcao, erro devido a chamada do rec com o parametro fake
 	print(datetime.datetime.fromtimestamp(
         int(msg['date'])).strftime('%H:%M:%S %d-%m') + "|" +
@@ -20,7 +22,7 @@ msg['from']['first_name']+ "| " + msg['text'])
 	#print(mensagemTxt)
 	if (mensagemTxt == '/petr4' or mensagemTxt == '/vale5' or mensagemTxt ==
 '/usim5' or mensagemTxt == '/csna3'  or mensagemTxt == '/goau4'  or mensagemTxt
-== '/ggbr4'  or mensagemTxt == '/jbss3' and mensagemTxt != '/all') :
+== '/ggbr4'  or mensagemTxt == '/jbss3' or mensagemTxt =='/goll4' and mensagemTxt != '/all') :
 		with open("/root/workspace/bolsa-systems/blueMoney/csv/all"+msg['text']+'.csv', "r") as f:
 			read_data = f.read()
 			f.closed
@@ -38,6 +40,7 @@ msg['from']['first_name']+ "| " + msg['text'])
 		rec({'text':'/usim5','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
 		rec({'text':'/csna3','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
 		rec({'text':'/jbss3','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
+		rec({'text':'/goll4','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
 		#rec({'text':'/petr4','chat':{'id':msg['chat']['id']}})
 		#rec({'text':'/ggbr4','chat':{'id':msg['chat']['id']}})
 		#rec({'text':'/goau4','chat':{'id':msg['chat']['id']}})
@@ -51,14 +54,21 @@ msg['from']['first_name']+ "| " + msg['text'])
 		chat = msg['chat']
 		idChat = chat['id']
 		bot.sendMessage(idChat, "### Sushi também é muito bom se beijado antes de comer #### ")
-
+	if ( "bovespa" in mensagemTxt):
+		with open("/root/workspace/bolsa-systems/blueMoney/csv/all/ibovespa.csv", "r") as f:
+			read_data = f.read()
+			f.closed
+		csv_reader = csv.reader(read_data)
+		csv_data = list(csv_reader)
+		#print (csv_data)
+		bot.sendMessage(idChat, msg['text'] + " -> R$ " + csv_data[6][0] + " (" + csv_data[10][0] + ")" )
+#		bot.sendMessage(idChat, msg['text'] + " -> $ " + csv_data[6][0])
 	if ( mensagemTxt == '/mining'):
 		bot.sendMessage(idChat, "### Start mining, wait ... ")
 		shellcmd = ('/root/workspace/bolsa-systems/blueMoney/dataMining/mining.sh')
 		global_resposta = subprocess.check_output(shellcmd, stderr=subprocess.STDOUT)
 		print(global_resposta)
 		bot.sendMessage(idChat, "Finished with success!\nhttp://bluemoney.antidrone.com.br/mesa.html para acessar realtime. Para consultar a resposta digite /res")
-
 	if ( mensagemTxt == '/iron'):
 		with open("/root/workspace/bolsa-systems/blueMoney/csv/all/iron-fe62.csv", "r") as f:
 			read_data = f.read()
@@ -67,17 +77,14 @@ msg['from']['first_name']+ "| " + msg['text'])
 		csv_data = list(csv_reader)
 		#print (csv_data)
 		bot.sendMessage(idChat, msg['text'] + " -> $ " + csv_data[6][0])
-	
 	if ( mensagemTxt == '/brent'):
-		with open("/root/workspace/bolsa-systems/blueMoney/csv/all/iron-fe62.csv", "r") as f:
+		with open("/root/workspace/bolsa-systems/blueMoney/csv/all/brent.csv", "r") as f:
 			read_data = f.read()
 			f.closed
 		csv_reader = csv.reader(read_data)
 		csv_data = list(csv_reader)
 		#print (csv_data)
 		bot.sendMessage(idChat, msg['text'] + " -> $ " + csv_data[6][0])
-
-
 	if ( mensagemTxt == '/res'):
 		chat = msg['chat']
 		idChat = chat['id']
@@ -96,6 +103,12 @@ todas as ações \n/vale5 - Listar açoes da Vale\n/ticker_da_ação - exemplo\
 /csna3, /petr4, /ggbr4, /jbss3\n/iron\n/brent\n/commodities\n\nUma dica cuide \
 de sua alimentação")
 
+	if ( mensagemTxt == 'oi' or mensagemTxt == 'Oi' ):
+		bot.sendMessage(idChat, "### Oi, deseja saber as mensagens do dia?  #### ")
+		rec({'text':'/all','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
+		rec({'text':'/iron','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
+		rec({'text':'/brent','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
+		rec({'text':'/ibovespa','chat':msg['chat'],'from':msg['from'],'date':msg['date']})
 
 
 
