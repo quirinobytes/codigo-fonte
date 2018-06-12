@@ -7,10 +7,10 @@ from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
 
 # Import data
-data = pd.read_csv('file.csv')
+data = pd.read_csv('/var/www/webserver/arquivos/stockDatabase.csv')
 
 # Drop date variable
-data = data.drop(['ANO'], 1)
+data = data.drop(['DATA'], 1)
 
 # Dimensions of dataset
 n = data.shape[0]
