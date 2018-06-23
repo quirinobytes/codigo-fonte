@@ -19,6 +19,9 @@ p = data.shape[1]
 # Make data a np.array
 data = data.values
 
+#Print the data array looking for NAN
+print np.isnan(data)
+
 # Training and test data
 train_start = 0
 train_end = int(np.floor(0.8*n))
