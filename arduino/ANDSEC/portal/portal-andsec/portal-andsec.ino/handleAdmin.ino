@@ -19,141 +19,157 @@ void handleAdmin() {
     ShowMenu();
     server.sendContent(  
       "<div id='textbox'> <div id='titulo'>  <font aling='center'> <h3>Remote Control Bomb - Admin Page</h3> </font></div> <br/>"
-      "Welcome!"
-      "<br/><br/>"
+      "Welcome! &nbsp;&nbsp;&nbsp;&nbsp; Your Time: &nbsp;&nbsp;&nbsp; ");
+      if (bomb_planted and not win){
+       //server.sendContent("<iframe color='white' width='100' height=25' src='/getbombstatus'></iframe>");
+      }
+    if (bomb_planted){ 
+        server.sendContent(
+      "<form method='POST' action='/admin/timerextend'>"
+      "You could extend the time 3x, but you loose 10% of points on each time. "
+      "<input type='submit' value='Extend'/></form>"             
+      );
+     }
       
+      if (fase1) {
+        server.sendContent("<br>&nbsp;&nbsp;&nbsp;&nbsp;| &#10004; | &nbsp;&nbsp; Fase 1");
+      } 
+      if (fase2) {
+        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; | &nbsp;&nbsp; Fase 2");
+      } 
+      if (fase3) {
+        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; | &nbsp;&nbsp; Fase 3");
+      }
+      if (fase4) {
+        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; | &nbsp;&nbsp; Fase 4");
+      }
+      if (fase5) {
+        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; | &nbsp;&nbsp; Fase 5");
+      }
       
-      "<label> Timer Extented: <b>") ;
-      server.sendContent(String(time_extended));
-      server.sendContent(" </b> Times ");
-      server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Pontuacao: <b>");
+      server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Points: <b> ");
       server.sendContent(String(pontos_atual));
       server.sendContent(" / ");
       server.sendContent(String(pontuacao_maxima));
-      if (fase1) {
-        server.sendContent("&nbsp;&nbsp;&nbsp;&nbsp;| &#10004;&nbsp;&nbsp; Fase 1");
-      } 
-      if (fase2) {
-        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004;&nbsp;&nbsp; Fase 2");
-      } 
-      if (fase3) {
-        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004;&nbsp;&nbsp; Fase 3");
-      }
-      if (fase4) {
-        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004;&nbsp;&nbsp; Fase 4");
-      }
-      if (fase5) {
-        server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;| &#10004;&nbsp;&nbsp; Fase 5");
-      }
+  
         
-      server.sendContent(
-      "</b></label><br/><hr>");
-
-      if (!bomb_planted) {
+      server.sendContent(" &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | <label> Timer Extented: <b>") ;
+      server.sendContent(String(time_extended));
+      server.sendContent("</b> Times ");
+      server.sendContent("</b></label>");
+      
+     
+     
+     if (!bomb_planted) {
         server.sendContent(
-          "<br><br>"
+          "<br><br><br/><hr>"
           "<form method='POST' action='/admin/b0mbsetuping'>"
           "<br/> To start the game Plant the Bomb <input type='submit' value='Plant'/></form>"
         );
       }
-      if (bomb_planted) 
-        server.sendContent(
-      "<form method='POST' action='/admin/timerextend'"
-      "<p> You could extend the time 3x, but lost 10% of points on each time. "
-      "<input type='submit' value='Extend the time!'/></p></form>"             
-      );
+     
       if (fase1) {
-         server.sendContent("<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
+         server.sendContent("<hr><br/><br/><br><br><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
         server.sendContent(
-          "Qual os 10 ultimos digitos da somatoria de 100 numeros de 50 algarismos! <a href='/admin/arquivo.zip'> donwload </a>"
-          "<form method='POST' action='/admin/somatoria'>"
-          "<input type='text' placeholder='int' name='answer'/>"
+          "Qual os 10 ultimos d&iacute;gitos da somatoria de 100 numeros de 50 algarismos! <a href='/admin/arquivo.zip'> donwload </a><br>"
+          "<form method='POST' action='/admin/somatoria'><br>"
+          "Resposta: <input type='text' placeholder='int' name='answer'/>"
           "<input type='submit' value='Answer'/></form>"
           );
       }
       if (fase2){ 
-           server.sendContent("<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
+           server.sendContent("<hr><br/><br/><br><br><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
           server.sendContent(
+          
+          "Quais os 10 primeiros d&iacute;gitos do resultado de fibonacci(1754)?<br><br>"
           "<form method='POST' action='/admin/fibonacci'>"
-          "Quais os 10 primeiros digitos do resultado de fibonacci(1754)? <input type='text' placeholder='int' name='answer'/>"
+          "Resposta: <input type='text' placeholder='int' name='answer'/>"
           "<input type='submit'  value='Answer'/></form>");   
       }
       if (fase3){ 
-           server.sendContent("<br/><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
+          server.sendContent("<hr><br/><br/><br><br><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
           server.sendContent(
-          "Qual cor de resistor e necessária para ter 0,100mA com 12V de tensao?<br>"
+          "Qual cor de resistor e necess&aacute;ria para ter 0,100mA com 250V de tensao? com no max 5% de tolerancia <br> <br> Resposta: <br>"
           "<form method='POST' action='/admin/resistors'>"
-          "<select class='form-control digit-picker' id='b4d1'>"
-          "<option class='brown' value='1'>Brown</option>"
-          "<option class='red' value='2'>Red</option>"
-          "<option class='orange' value='3'>Orange</option>"
-          "<option class='yellow' value='4'>Yellow</option>"
-          "<option class='green' value='5'>Green</option>"
-          "<option class='blue' value='6'>Blue</option>"
-          "<option class='purple' value='7'>Violet</option>"
-          "<option class='grey' value='8'>Gray</option>"
-          "<option class='white' value='9' selected=''>White</option>"
+          "<select class='form-control digit-picker' id='coluna1' name='coluna1' onChange=\"changeColor('coluna1');\" >"
+          "<option class='brown' value='brown'>Brown</option>"
+          "<option class='red' value='red'>Red</option>"
+          "<option class='orange' value='orange'>Orange</option>"
+          "<option class='yellow' value='yellow'>Yellow</option>"
+          "<option class='green' value='green'>Green</option>"
+          "<option class='blue' value='blue'>Blue</option>"
+          "<option class='purple' value='purple'>Violet</option>"
+          "<option class='grey' value='grey'>Gray</option>"
+          "<option class='white' value='white' selected=''>White</option>"
           "</select>"
           
-          "<select class='form-control digit-picker' id='b4d2'>"
-          "<option class='black' value='0'>Black</option>"
-          "<option class='brown' value='1'>Brown</option>"
-          "<option class='red' value='2'>Red </option>"
-          "<option class='orange' value='3'>Orange</option>"
-          "<option class='yellow' value='4'>Yellow</option>"
-          "<option class='green' value='5'>Green</option>"
-          "<option class='blue' value='6' selected=''>Blue</option>"
-          "<option class='purple' value='7'>Violet</option>"
-          "<option class='grey' value='8'>Gray</option>"
-          "<option class='white' value='9'>White</option>"
+          "<select class='form-control digit-picker' id='coluna2' name='coluna2' onChange=\"changeColor('coluna2');\"  >"
+          "<option class='black' value='black'>Black</option>"
+          "<option class='brown' value='brown'>Brown</option>"
+          "<option class='red' value='red'>Red </option>"
+          "<option class='orange' value='orange'>Orange</option>"
+          "<option class='yellow' value='yellow'>Yellow</option>"
+          "<option class='green' value='green'>Green</option>"
+          "<option class='blue' value='blue' selected=''>Blue</option>"
+          "<option class='purple' value='purple'>Violet</option>"
+          "<option class='grey' value='grey'>Gray</option>"
+          "<option class='white' value='white'>White</option>"
           "</select>"
     
-          "<select class='form-control digit-picker' id='b4d3'>"
-          "<option class='black' value='x1'> Black</option>"
-          "<option class='brown' value='x10'> Brown</option>"
-          "<option class='red' value='x100'> Red</option>"
-          "<option class='orange' value='x1k'> Orange</option>"
-          "<option class='yellow' value='x10k'> Yellow</option>"
-          "<option class='green' value='x100k'> Green</option>"
-          "<option class='blue' value='x1M'> Blue</option>"
-          "<option class='purple' value='x10M'> Violet</option>"
-          "<option class='grey' value='x100M'> Gray</option>"
-          "<option class='white' value='x1G'> White</option>"
-          "<option class='gold' value='÷10'> Gold</option>"
-          "<option class='silver' value='100' selected=''> Silver</option>"
+          "<select class='form-control digit-picker' id='coluna3' name='coluna3' onChange=\"changeColor('coluna3');\">"
+          "<option class='black' value='black'> Black</option>"
+          "<option class='brown' value='brown'> Brown</option>"
+          "<option class='red' value='red'> Red</option>"
+          "<option class='orange' value='orange'> Orange</option>"
+          "<option class='yellow' value='yellow'> Yellow</option>"
+          "<option class='green' value='green'> Green</option>"
+          "<option class='blue' value='blue'> Blue</option>"
+          "<option class='purple' value='purple'> Violet</option>"
+          "<option class='grey' value='grey'> Gray</option>"
+          "<option class='white' value='white'> White</option>"
+          "<option class='gold' value='gold'> Gold</option>"
+          "<option class='silver' value='silver' selected=''> Silver</option>"
           "</select>"
     
-          "<select class='form-control digit-picker' id='b4d4'>"
-          "<option class='brown' value=''> Brown </option>"
-          "<option class='red' value=''> Red </option>"
-          "<option class='orange' value=''> Orange </option>"
-          "<option class='yellow' value=''> Yellow </option>"
-          "<option class='green' value=''> Green </option>"
-          "<option class='blue' value=''> Blue </option>"
-          "<option class='purple' value=''> Violet </option>"
-          "<option class='grey' value=''> Gray </option>"
-          "<option class='gold' value='' selected=''> Gold</option>"
-          "<option class='silver' value=''>Silver</option>"
+          "<select class='form-control digit-picker' id='coluna4' name='coluna4' onChange=\"changeColor('coluna4');\">"
+          "<option class='brown' value='brown'> Brown </option>"
+          "<option class='red' value='red'> Red </option>"
+          "<option class='orange' value='orange'> Orange </option>"
+          "<option class='yellow' value='yellow'> Yellow </option>"
+          "<option class='green' value='green'> Green </option>"
+          "<option class='blue' value='blue'> Blue </option>"
+          "<option class='purple' value='purple'> Violet </option>"
+          "<option class='grey' value='grey'> Gray </option>"
+          "<option class='gold' value='gold' selected=''> Gold</option>"
+          "<option class='silver' value='silver'>Silver</option>"
           "</select>"
           "<input type='submit'  value='Enviar'/></form>"   
       );
       }
-if (fase4) {
-   server.sendContent(  
-   "<form method='POST' action='/admin/b0mbdefusing'>"
-   "Defuse the Bomb! <input type='submit' value='Defuse'/></form>"
-   );
-}
-  if (bomb_planted){
-    server.sendContent(  
-      "<br><br><h2> The game start and the Bomb is Planted! </h2>"
-      "<iframe width='400' height='80' src='/getbombstatus'>"
-      "<p>Your browser does not support iframes.</p>"
-      "</iframe>"
-    );
-  }
-
- server.sendContent(  "</div></body>" );
+    if (fase4) {
+      final_fase = true;
+       server.sendContent(  
+       "<hr><br><br><br><br><br><br><br><br><form method='POST' action='/admin/b0mbdefusing'>"
+       "Get your code until ... <input type='submit' value='go to next fase'/></form>"
+       );
+       
+    }
+    if (fase5){
+      final_fase = false;
+           server.sendContent("<hr><br/><br/><br><br><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
+          server.sendContent(
+          "<form method='POST' action='/admin/final'>"
+          "Digite o codigo Final? <input type='text' placeholder='int' name='answer'/>"
+          "<input type='submit'  value='Answer'/></form>");   
+    }
+    if (win){
+      final_fase = false;
+           server.sendContent("<hr><br/><br/><br><br><br/> &nbsp;&nbsp;&nbsp;&nbsp;| &#10004; |&nbsp;&nbsp;"); 
+           server.sendContent(
+            "Congratulations you win the game!"
+            "<br><br>Take your flag: <b>{Mohamedlives}</b>");   
+    }
+ server.sendContent("</div></body>");
   }
   // Senao faca o redirect e caia fora, mas ja deixa o usuario salvo pra facilitar.
   else

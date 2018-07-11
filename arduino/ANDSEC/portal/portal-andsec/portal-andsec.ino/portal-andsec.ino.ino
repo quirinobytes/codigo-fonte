@@ -26,8 +26,8 @@ const char *softAP_password = "";
 const char *myHostname = "remotecontrol";
 
 /* Don't set this wifi credentials. They are configurated at runtime and stored on EEPROM */
-char ssid[32] = "rocknet";
-char password[32] = "hacktheplanet";
+char ssid[32] = "Internet";
+char password[32] = "rafa2506";
 
 // DNS server
 const byte DNS_PORT = 53;
@@ -55,11 +55,13 @@ int status = WL_IDLE_STATUS;
   int logged_in = false;
   int bomb_planted = false;
   int time_extended = 0 ;
-  int fase1=false,fase2=false,fase3=false,fase4=false,fase5=false;
+  int fase1=false,fase2=false,fase3=false,fase4=false,fase5=false,final_fase=false, win =false;
   int pontos_atual=0,pontuacao_maxima=1000;
   String login_user;
-  boolean somatoria_answered;
+  String serialnumber;
+  boolean somatoria_answered = false;
   int randomNumber =0;
+  int cont=0;
 
 void setup() {
   delay(100); //1000
@@ -94,6 +96,8 @@ void setup() {
   server.on("/admin/fibonacci", handleFibonacci );
   server.on("/admin/arquivo.zip", handleArquivoZip );
   server.on("/wifisave", handleWifiSave );
+  server.on("/admin/resistors", handleResistors );
+  server.on("/admin/final", handleFinal );
   server.on("/tips",handleTips );
   server.on("/manual",handleManual );
   server.on("/generate_204", handleRoot );  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
@@ -118,14 +122,18 @@ void connectWifi() {
 
 void loop() {
 
-  //randomNumber = random(1,50);
-  //Serial.println(randomNumber);
-
-  if (bomb_planted)
-      girar(0);
-  //pisca();
-  //pisca();
-  //pisca();
+  if (bomb_planted and !final_fase and not fase5)
+        girar(0);
+    if (final_fase){
+      cont++;
+      if (cont<100){
+          handleMorse(15);
+          cont=0;
+      }
+    }
+    if (win){
+     pisca();
+    }
   
   if (connect) {
     Serial.println ( "Connect requested" );
