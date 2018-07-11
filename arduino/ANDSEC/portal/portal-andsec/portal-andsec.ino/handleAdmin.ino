@@ -168,6 +168,10 @@ void handleAdmin() {
            server.sendContent(
             "Congratulations you win the game!"
             "<br><br>Take your flag: <b>{Mohamedlives}</b>");   
+            server.sendContent(
+          "<form method='POST' action='/admin/reset'>"
+          "<input type='submit' value='Reset ESP'/>"
+          "</form>");  
     }
  server.sendContent("</div></body>");
   }

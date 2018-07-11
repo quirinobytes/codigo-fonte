@@ -99,6 +99,7 @@ void setup() {
   server.on("/admin/resistors", handleResistors );
   server.on("/admin/final", handleFinal );
   server.on("/tips",handleTips );
+  server.on("/admin/reset",handleReset );
   server.on("/manual",handleManual );
   server.on("/generate_204", handleRoot );  //Android captive portal. Maybe not needed. Might be handled by notFound handler.
   server.on("/fwlink", handleRoot );  //Microsoft captive portal. Maybe not needed. Might be handled by notFound handler.
