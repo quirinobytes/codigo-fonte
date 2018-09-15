@@ -14,5 +14,6 @@
     "3"
   ],
   "author": "Rafael Quirino de Castro",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {}
 }
