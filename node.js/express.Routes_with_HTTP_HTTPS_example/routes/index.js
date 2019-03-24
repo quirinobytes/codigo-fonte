@@ -7,7 +7,7 @@ const router = express.Router()
 // Fazendo uma rota com router.get
 router.get('/test', (req, res) => {
   res.send('test route')
-  console.log('entrei na test')
+  console.log('Entrei na http://serverip/test')
 })
 
 // Fazendo uma rota com middlewqare(controller) rootRoutes.login
