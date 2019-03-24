@@ -1,18 +1,15 @@
 const express = require('express')
-const rootRoutes = require('./root')
+const rootController = require('./controllers/root')
+const loginController = require('./controllers/login')
 const compression = require('compression')
 const router = express.Router()
 //  const accountRoutes = require('./account.js')
 
-// Fazendo uma rota com router.get
-router.get('/test', (req, res) => {
-  res.send('test route')
-  console.log('Entrei na http://serverip/test')
-})
-
 // Fazendo uma rota com middlewqare(controller) rootRoutes.login
-router.use('/', rootRoutes.login)
 
+router.use('/login', loginController.login)
+router.use('/test', loginController.test)
+router.use('/', rootController.root)
 // use some middleware and compress all outgoing responses
 router.use(compression())
 
