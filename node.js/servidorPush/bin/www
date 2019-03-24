@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+var debug = require('debug')('servidorPush')
+var app = require('../app')
+const https = require('https')
+var fs = require('fs');
+
+app.set('port', process.env.PORT || 443)
+
+// var server = app.listen(app.get('port'), function() {
+//   debug('Express server listening on port ' + server.address().port);
+// });
+const options = {
+  key: fs.readFileSync('keys/key.pem'),
+  cert: fs.readFileSync('keys/cert.pem')
+}
+
+var server = https.createServer(options, app)
+    server.listen(443, function(){
+    console.log("\n\n\n\t Servidor Push - started successfully at https://servidorpush.superati.com.br:443/\n\n")
+})

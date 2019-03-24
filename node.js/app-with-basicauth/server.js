@@ -1,10 +1,17 @@
+#!/usr/bin/env nodejs
+
 require('rootpath')()
+const basicAuth = require('auth/basic-auth')
+const errorHandler = require('auth/error-handler')
+const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 const cors = require('cors')
-const bodyParser = require('body-parser')
-const basicAuth = require('auth/basic-auth')
-const errorHandler = require('auth/error-handler')
+
+//const config = require('config')
+const config = require('config').get(process.env.NODE_ENV);
+
+console.log('config=' + JSON.stringify(config))
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())

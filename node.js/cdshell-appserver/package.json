@@ -1,0 +1,19 @@
+{
+  "name": "cdshell-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/www",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/events-api": "^2.2.0",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.4",
+    "normalize-port": "^1.0.0",
+    "rootpath": "^0.1.2"
+  }
+}
