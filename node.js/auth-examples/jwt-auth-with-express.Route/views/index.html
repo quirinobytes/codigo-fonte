@@ -1,63 +1,166 @@
+
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<title>Cdshell Login</title>
-		<style>
-		.login-form {
-			width: 300px;
-			margin: 0 auto;
-			font-family: Tahoma, Geneva, sans-serif;
-		}
-		.login-form h1 {
-			text-align: center;
-			color: #4d4d4d;
-			font-size: 24px;
-			padding: 20px 0 20px 0;
-		}
-		.login-form input[type="password"],
-		.login-form input[type="text"] {
-			width: 100%;
-			padding: 15px;
-			border: 1px solid #dddddd;
-			margin-bottom: 15px;
-			box-sizing:border-box;
-		}
-		.login-form input[type="submit"] {
-			width: 100%;
-			padding: 15px;
-			background-color: #535b63;
-			border: 0;
-			box-sizing: border-box;
-			cursor: pointer;
-			font-weight: bold;
-			color: #ffffff;
-		}
-		</style>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script type="text/javascript">
-			$('#submit').on('click',function(){
-    $.ajax({
-          url: "http://localhost:8080/login/",
-          type: 'GET',
-          contentType: 'application/json',
-          headers: {
-                    "Authorization": "Bearer " + $('#tokenField').val()
-                 },
-          async: false
-			})
-		})
-			
-		</script>
-	</head>
-	<body>
-		<div class="login-form">
-			<h1>Login</h1>
-			<form action="/login" method="POST" enctype="application/x-www-form-urlencoded">
-				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
-				<input id='submit' type="submit">
-			</form>
-		</div>
-	</body>
+    <head>
+        <title>
+           Cdshell Login
+        </title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    </head>
+    <body id="body">
+        <label id="codigo">codigo</label>
+        <h3 class="text-center">Cdshell Login</h3>
+        <div id='container'>
+            Nao logado
+        </div>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <button type="button" class="btn btn-primary center-block" onclick="auth()">Submit</button>
+            </form>
+            <div id="token-display">
+            </div>
+        </div>
+        </br>
+        </br>
+        <div class="container">
+            <form>
+                <div class="form-group">
+                    <label for="token">Username</label>
+                   
+                    <input class="form-control" id="token" placeholder="token" type="text"></input>
+                </div>
+                <button type="button" class="btn btn-primary center-block" onclick="getlist()">Get List</button>
+            </form>
+            <div id="list">
+            </div>
+        </div>
+        <div id='result' class="container">
+                <form>
+                    <div class="form-group">
+                        <label for="token">Root Page</label>
+                       
+                    </div>
+                    <button type="button" class="btn btn-primary center-block" onclick="getRoot()">Get Root</button>
+                </form>
+                <div id="root">
+                </div>
+            </div>
+
+        <script type="text/javascript">
+            function reqListener () {
+                console.log(this.responseText);
+                document.getElementById("container").innerHTML = this.responseText;
+            };
+            function loadRootPage() {
+                document.getElementById("root").innerHTML = this.responseText;
+            }
+
+            auth= function(){
+                var xhttp = new XMLHttpRequest();
+                data={username:document.getElementById("username").value,password:document.getElementById("password").value}
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState==4) {
+                        response = xhttp.responseText;
+                        document.getElementById("token-display").innerHTML = response;
+                        console.log(response)
+                        var json = response;
+                        obj = JSON.parse(json);
+                        if (obj.sucess ) {
+                            // $.ajax({
+                            //     url: 'http://192.168.15.3:8080/admin',
+                            //     headers: {
+                            //         'Authorization': 'Bearer ' + obj.token,
+                            //         'Content-Type':'application/x-form-urlencoded'
+                            //     },
+                            //     method: 'GET',
+                            //     dataType: 'text/plain',
+                            //     data: "sucessoooooo",
+                            //     success: function(data){
+                            //         console.log('succesSSSSSSSSSSSSSS: '+data);
+                            //     }
+                            // });
+                            var client = new XMLHttpRequest();
+                            client.open("GET", "https://192.168.15.3/admin");
+                            client.setRequestHeader( 'Authorization', 'Bearer ' + obj.token );
+                            client.send();
+                            client.onload = reqListener;
+                            
+                        }
+                        console.log(obj.token);
+                        document.getElementById("codigo").innerHTML = obj.token;
+                    }
+                };
+                xhttp.open("POST", "https://192.168.15.3/login", true);
+                xhttp.setRequestHeader("Content-type", 'application/json; charset=UTF-8');
+                xhttp.send(JSON.stringify(data));
+            }
+            getlist= function(){
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (xhttp.readyState==4) {
+                        var response = JSON.parse(xhttp.responseText);
+                        var ul=document.createElement("ul");
+                        for(var i=0;i<response.users.length;i++){
+                            var li=document.createElement("li");
+                            li.appendChild(document.createTextNode(response.users[i].name));
+                            ul.appendChild(li);
+                        }
+                        document.getElementById("list").appendChild(ul);
+                    }
+                };
+                xhttp.open("POST", "https://192.168.15.3/getusers", true);
+                xhttp.setRequestHeader("Content-type", 'application/x-form-urlencoded; charset=UTF-8');
+                var token = {}
+                token = document.getElementById("codigo").innerHTML 
+                
+                //console.log(token);
+                xhttp.setRequestHeader( 'Authorization', 'Bearer ' + token );
+                xhttp.send();
+                
+                
+            }
+            getRoot = function(){
+                var xhttp = new XMLHttpRequest();
+                // xhttp.onreadystatechange = function() {
+                //     if (xhttp.readyState==4) {
+                //         var response = JSON.parse(xhttp.responseText);
+                //         var ul=document.createElement("ul");
+                //         for(var i=0;i<response.users.length;i++){
+                //             var li=document.createElement("li");
+                //             li.appendChild(document.createTextNode(response.users[i].name));
+                //             ul.appendChild(li);
+                //         }
+                //         document.getElementById("root").appendChild(ul);
+                //     }
+                // };
+                xhttp.open("GET", "https://192.168.15.3/", true);
+                xhttp.setRequestHeader("Content-type", 'application/x-form-urlencoded; charset=UTF-8');
+                var token = {}
+                token = document.getElementById("codigo").innerHTML 
+                
+                //console.log(token);
+                xhttp.setRequestHeader( 'Authorization', 'Bearer ' + token );
+                xhttp.send();
+                xhttp.onload = loadRootPage
+                
+                
+            }
+        </script>
+    </body>
 </html>
+
