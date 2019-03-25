@@ -3,7 +3,7 @@
 <html>
     <head>
         <title>
-            Authentication
+           Cdshell Login
         </title>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -14,7 +14,10 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
-        <h3 class="text-center">Authentication</h3>
+        <h3 class="text-center">Cdshell Login</h3>
+        <div id='container'>
+            Nao logado
+        </div>
         <div class="container">
             <form>
                 <div class="form-group">
@@ -46,6 +49,11 @@
             </div>
         </div>
         <script type="text/javascript">
+            function reqListener () {
+                console.log(this.responseText);
+                document.getElementById("container").innerHTML = this.responseText;
+            };
+
             auth= function(){
                 var xhttp = new XMLHttpRequest();
                 data={username:document.getElementById("username").value,password:document.getElementById("password").value}
@@ -56,6 +64,27 @@
                         console.log(response)
                         var json = response;
                         obj = JSON.parse(json);
+                        if (obj.sucess ) {
+                            // $.ajax({
+                            //     url: 'http://192.168.15.3:8080/admin',
+                            //     headers: {
+                            //         'Authorization': 'Bearer ' + obj.token,
+                            //         'Content-Type':'application/x-form-urlencoded'
+                            //     },
+                            //     method: 'GET',
+                            //     dataType: 'text/plain',
+                            //     data: "sucessoooooo",
+                            //     success: function(data){
+                            //         console.log('succesSSSSSSSSSSSSSS: '+data);
+                            //     }
+                            // });
+                            var client = new XMLHttpRequest();
+                            client.open("GET", "http://192.168.15.3:8080/admin");
+                            client.onload = reqListener;
+                            client.setRequestHeader( 'Authorization', 'Bearer ' + obj.token );
+                            client.send();
+                            
+                        }
                         console.log(obj.token);
                         document.getElementById("codigo").innerHTML = obj.token;
                     }
@@ -81,7 +110,7 @@
                 xhttp.open("POST", "http://192.168.15.3:8080/getusers", true);
                 xhttp.setRequestHeader("Content-type", 'application/x-form-urlencoded; charset=UTF-8');
                 var token = {}
-                token = document.getElementById("codigo").innerHTML 
+                //token = document.getElementById("codigo").innerHTML 
                 
                 console.log(token);
                 xhttp.setRequestHeader( 'Authorization', 'Bearer ' + token );

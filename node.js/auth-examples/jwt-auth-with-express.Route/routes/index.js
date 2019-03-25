@@ -72,7 +72,7 @@ router.post('/getusers', jwtMW, (req, res) => {
 
 router.get('/admin', jwtMW, function (req, res) {
   console.log('cheguei na Admin')
-  res.send('<h1> Admin Page, congratulations </h1>')
+  res.send('<h1> Admin Pages load sucessful </h1>')
 })
 
 router.get('/', jwtMW, rootController.root)
