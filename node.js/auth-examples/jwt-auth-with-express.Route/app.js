@@ -72,22 +72,11 @@ app.use(require('./routes'))
 // Error handling
 app.use(function (err, req, res, next) {
   if (err.name === 'UnauthorizedError') { // Send the error rather than to show it on the console
-    res.status(403).redirect('/login')
-    //res.status(401).send(err)
+    res.status(401).redirect('/login')
+    // res.status(401).send(err)
   } else {
     next(err)
   }
 })
-
-
-
-
-// Starting the app on PORT 3000
-const PORT = 8080;
-app.listen(PORT, () => {
-    // eslint-disable-next-line
-    console.log(`Magic happens on port ${PORT}`);
-});
-
 
 module.exports = app

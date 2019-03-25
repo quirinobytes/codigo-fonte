@@ -4,7 +4,7 @@ const router = express.Router()
 const path = require('path')
 
 var login = function (req, res, next) {
-  res.sendFile('index2.html', {
+  res.sendFile('index.html', {
     root: path.join(__dirname, '../../views/')
   })
 }

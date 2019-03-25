@@ -6,7 +6,6 @@ const router = express.Router()
 var root = function (req, res, next) {
   console.log('Root middleware')
   res.send('Root route')
-  next()
 }
 
 // isso exporta um objeto com os valores de login e config

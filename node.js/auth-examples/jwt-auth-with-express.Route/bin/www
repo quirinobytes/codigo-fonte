@@ -1,0 +1,42 @@
+#!/usr/bin/env nodejs
+
+require('rootpath')()
+var config = require('../config').get(process.env.NODE_ENV)
+// var normalizePort = require('normalize-port')
+var https = require('https')
+var http = require('http')
+var app = require('../app')
+console.log('\t+---------------------+')
+console.log('\t| Starting App Server |')
+console.log('\t+---------------------+')
+console.log('\n\tThis is a model app framework')
+console.log('\tthat can be start only crianting new certificate keys')
+console.log('\twith this command: criador_de_certificados.sh \n\n')
+// console.log('config=' + JSON.stringify(config))
+
+// --------< SOCKET.IO >--------------------------------------------+
+// Util usar server separado para reusar o HTTP server para fazer   |
+// bind tmb com socket.io, na mesma instancia.                      |
+//                                                                  |
+//     -- Exemplo:                                                  |
+//    #-----------------------------------------------------#       |
+//    | var server  = require('http').createServer(app)     |       |
+//    | var io      = require('socket.io').listen(server)   |       |
+//    | ...                                                 |       |
+//    |  server.listen(1234)                                |       |
+//    #-----------------------------------------------------#       |
+// -----------------------------------------------------------------+
+
+/**
+ * Create HTTP/HTTPS servers.
+ * Criando os servers para ouvir nas portas 80,443 e amarrando no App Express
+ * Config => ./config/index.js
+ */
+http.createServer( app).listen(config.server.http_port)
+https.createServer(config.certificate_options, app).listen(config.server.https_port)
+
+console.log('-------------------------------')
+console.log('Servidor iniciado com sucesso.')
+console.log('HTTP Port:    ' + config.server.http_port)
+console.log('HTTPS Port:  ' + config.server.https_port)
+console.log('-------------------------------\n\n\n')
