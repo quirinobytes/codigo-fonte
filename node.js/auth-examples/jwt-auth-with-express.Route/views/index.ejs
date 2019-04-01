@@ -1,36 +1,26 @@
-
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>
-           Cdshell Login
-        </title>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-        
-        <!-- Latest compiled and minified JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </head>
+<html id='html'>
+<head>
+        <% include partials/head %>        
+        <% include partials/menu %>
+</head>
     <body id="body">
-        <div id="codigo" style="display:none">codigo</div>
+        <div id="jwtJSON" style="display:flex">{"sucess":false,"token":null,"err":"Username or password is incorrect"}</div>
         <h3 class="text-center">Cdshell Login</h3>
+        <button type="button" class="btn btn-primary center-block" onclick="logout()">Logout</button>
         <div id='container' >
-            Nao logado
         </div>
         <div class="container">
             <form>
                 <div class="form-group">
                 
                 <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" placeholder="Username">
+                <input type="text" class="form-control" id="username" placeholder="Username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
-                <button type="button" class="btn btn-primary center-block" onclick="auth()">Submit</button>
+                <button type="button" class="btn btn-primary center-block" onclick="login()">Login</button>
             </form>
             <div id="token-display">
             </div>
@@ -60,55 +50,17 @@
                 <div id="root">
                 </div>
             </div>
+            <button type="button" class="btn btn-primary center-block" onclick="setToken(document.getElementById('jwtJSON').innerHTML )">Set token</button>
+            <button type="button" class="btn btn-primary center-block" onclick="getURL_inBody('./admin')">Load admin</button>
 
         <script type="text/javascript">
-            function reqListener () {
-                console.log(this.responseText);
-                document.getElementById("container").innerHTML = this.responseText;
-            };
+
+            
             function loadRootPage() {
                 document.getElementById("root").innerHTML = this.responseText;
             }
 
-            auth= function(){
-                var xhttp = new XMLHttpRequest();
-                data={username:document.getElementById("username").value,password:document.getElementById("password").value}
-                xhttp.onreadystatechange = function() {
-                    if (xhttp.readyState==4) {
-                        response = xhttp.responseText;
-                        document.getElementById("token-display").innerHTML = response;
-                        console.log(response)
-                        var json = response;
-                        obj = JSON.parse(json);
-                        if (obj.sucess ) {
-                            // $.ajax({
-                            //     url: 'http://192.168.15.3:8080/admin',
-                            //     headers: {
-                            //         'Authorization': 'Bearer ' + obj.token,
-                            //         'Content-Type':'application/x-form-urlencoded'
-                            //     },
-                            //     method: 'GET',
-                            //     dataType: 'text/plain',
-                            //     data: "sucessoooooo",
-                            //     success: function(data){
-                            //         console.log('succesSSSSSSSSSSSSSS: '+data);
-                            //     }
-                            // });
-                            var client = new XMLHttpRequest();
-                            client.open("GET", "https://192.168.15.3/admin");
-                            client.setRequestHeader( 'Authorization', 'Bearer ' + obj.token );
-                            client.send();
-                            client.onload = reqListener;
-                            
-                        }
-                        console.log(obj.token);
-                        document.getElementById("codigo").innerHTML = obj.token;
-                    }
-                };
-                xhttp.open("POST", "https://192.168.15.3/login", true);
-                xhttp.setRequestHeader("Content-type", 'application/json; charset=UTF-8');
-                xhttp.send(JSON.stringify(data));
-            }
+            
             getlist= function(){
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
@@ -151,7 +103,7 @@
                 xhttp.open("GET", "https://192.168.15.3/", true);
                 xhttp.setRequestHeader("Content-type", 'application/x-form-urlencoded; charset=UTF-8');
                 var token = {}
-                token = document.getElementById("codigo").innerHTML 
+                jwtJSON = document.getElementById("jwtJSON").innerHTML 
                 
                 //console.log(token);
                 xhttp.setRequestHeader( 'Authorization', 'Bearer ' + token );
