@@ -1,0 +1,47 @@
+<html id='html'>
+<head>
+    <script src="/javascript-manager-front-end-auth.js" lang='text/javascript' crossorigin="anonymous"> </script>
+    <script lang="text/javascript">
+    // funcao para amarrar o enter como default do Login
+        window.onload = function(){
+            document.getElementById("password").addEventListener("keyup", event => {
+            if(event.key !== "Enter") return; // Use `.key` instead.
+                document.getElementById("button").click(); // Things you want to do.
+                event.preventDefault(); // No need to `return false;`.
+            })
+        }
+    </script>
+<link rel="stylesheet" href="/login.css" crossorigin="anonymous">
+</head>
+<body>
+
+<div class='board'>
+    <div id='container' class='container'>
+   
+        <div class="imgcontainer">
+          <img src="/img/img_avatar.png" alt="Avatar" class="avatar">
+        </div>
+        <div>
+
+          <label for="username"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="username" id="username" required>
+      
+          <label for="password"><b>Password</b></label>
+          <input type="password" placeholder="Enter Password" name="password" id="password" required>
+         
+          <button id="button" onclick="login()">Login</button>
+         
+          <label>
+            <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+        </div>
+      
+        <div class="container" style="background-color:#f1f1f1">
+          <button type="button" class="cancelbtn">Cancel</button>
+          <span class="psw">Forgot <a href="#">password?</a></span>
+        </div>
+    
+    </div>          
+</div>
+</body>
+</html>

@@ -7,6 +7,7 @@ const router = express.Router()
 const jwt = require('jsonwebtoken')
 const exjwt = require('express-jwt')
 const path = require('path')
+const fs = require('fs')
 
 //  const accountRoutes = require('./account.js')
 const jwtCheckAuth = exjwt({
@@ -26,6 +27,14 @@ let users = [
   }
 ]
 
+// ####################################
+
+router.use(compression())
+
+router.get('/', function (req, res) {
+  res.redirect('/index')
+})
+//####################################
 // Fazendo uma rota com middlewqare(controller) rootRoutes.login
 router
   .get('/login', loginController.login)
@@ -71,26 +80,46 @@ router.post('/getusers', jwtCheckAuth, (req, res) => {
   res.send(JSON.stringify({ users: user_list }))
 })
 
+// ####################################
 router.get('/admin', jwtCheckAuth, function (req, res) {
   console.log('cheguei na Admin')
-  res.send('<h1> Admin Pages load sucessful </h1>')
+  res.render('admin', { page: 'Admin Pages' })
+  // res.send('<h1> Admin Pages load sucessful </h1>')
 })
 
-router.get('/', jwtCheckAuth, rootController.root)
+// ####################################
+router.get('/chat', jwtCheckAuth, function (req, res) {
+  console.log('cheguei na Chat')
+  res.render('chat')
+})
 
+// ####################################
+router.get('/index', jwtCheckAuth, function (req, res) {
+  console.log('cheguei na Index')
+  res.render('index', { page: 'Home Pages' })
+})
+
+// ####################################
+router.get('/menu', jwtCheckAuth, function (req, res) {
+  res.sendFile('menu.html', {
+    root: path.join(__dirname, '../views/')
+  })
+})
+
+// ####################################
 router.get('/favicon.ico', function (req, res) {
   console.log('Someone request file: favicon.ico')
   res.sendFile('favicon.ico', {
     root: path.join(__dirname, '../img/')
   })
 })
+
+// router.use('/account', accountRoutes)
 // router.get('/', jwtCheckAuth, function (req, res) {
 //   res.send('Wiki home page')
 // })
-
 //router.use('/', rootController.root)
 // use some middleware and compress all outgoing responses
-router.use(compression())
 
-// router.use('/account', accountRoutes)
+
 module.exports = router

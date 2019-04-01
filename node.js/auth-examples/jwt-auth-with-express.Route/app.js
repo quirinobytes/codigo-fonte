@@ -1,3 +1,4 @@
+'use strict'
 /**
  * To get started install
  * express bodyparser jsonwebtoken express-jwt
@@ -7,36 +8,36 @@
  */
 require('rootpath')()
 // Bringing all the dependencies in
-const express = require('express');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const exjwt = require('express-jwt');
+const express = require('express')
+const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
+const exjwt = require('express-jwt')
 const rotas = require('./routes')
 
-// Instantiating the express app
-const app = express();
 
+// Instantiating the express app
+const app = express()
 
 // See the react auth blog in which cors is required for access
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://192.168.15.3:8080')
-    res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization')
-    next()
+  res.setHeader('Access-Control-Allow-Origin', 'http://192.168.15.3:8080')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-type,Authorization')
+  next()
 })
 
 // Setting up bodyParser to use json and set it to req.body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }))
+
+app.set('view engine', 'ejs')
+// usando o layout do EJS
 
 // INstantiating the express-jwt middleware
 const jwtMW = exjwt({
-    secret: 'keyboard cat 4 ever'
-});
-
+  secret: 'keyboard cat 4 ever'
+})
 
 // MOCKING DB just for test
-
-
 // LOGIN ROUTE
 // app.post('/login', (req, res) => {
 //     const { username, password } = req.body;
@@ -63,9 +64,13 @@ const jwtMW = exjwt({
 //     }
 // });
 
-//app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
+// app.get('/', jwtMW /* Using the express jwt MW here */, (req, res) => {
 //    res.send('You are authenticated'); //Sending some response when authenticated
-//});
+// });
+
+// router.get('/', jwtCheckAuth, rootController.root)
+app.use('/', express.static('public'))
+app.use('/img', express.static('img'))
 
 app.use(require('./routes'))
 
