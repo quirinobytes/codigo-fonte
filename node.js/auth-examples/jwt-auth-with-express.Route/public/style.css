@@ -11,6 +11,30 @@
   margin-top: 5%;
 }
 
+.loginboard {
+    padding: 6px;
+    width: 350px;
+    text-align: center;
+    border: 3px solid #5fadb8;
+    background-color: rgb(168, 206, 180);
+    border-radius: 20px;
+}
+
+.container{
+    width: 90%;
+}
+.board {
+    border-radius: 20px;
+    margin: 0 auto;
+    color: white;
+    display: inline-block;
+    border: 1px solid #5fadb8;
+    padding: 10px;
+    background-color: rgba(230, 230, 230, 0.877);
+    color:black;
+}
+
+
 div.menu {
     background-color: #333;
     text-align: center;
@@ -60,27 +84,3 @@ div.logged_user a:hover{
 div.scrollmenu a:hover {
     background-color: #777;
 }
-
-.loginboard {
-    padding: 6px;
-    width: 350px;
-    text-align: center;
-    border: 3px solid #5fadb8;
-    background-color: rgb(168, 206, 180);
-    border-radius: 20px;
-}
-
-.container{
-    width: 90%;
-}
-.board {
-    border-radius: 20px;
-    margin: 0 auto;
-    color: white;
-    display: inline-block;
-    border: 1px solid #5fadb8;
-    padding: 10px;
-    background-color: rgba(230, 230, 230, 0.877);
-    color:black;
-}
-  

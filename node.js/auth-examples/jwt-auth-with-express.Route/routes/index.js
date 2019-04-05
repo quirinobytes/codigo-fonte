@@ -94,15 +94,14 @@ router.get('/admin', jwtCheckAuth, function (req, res) {
 // ####################################
 router.get('/chat', jwtCheckAuth, function (req, res) {
   console.log('cheguei na Chat')
- // console.log(req.headers.authorization)
-  res.header('Authorization', req.headers.authorization)
-  res.redirect('/authorize/chat')
-  // res.render('chat', { page: 'Chat Web' })
-})
-router.get('/authorized/chat', function (req, res) {
-  console.log('cheguei na Autorized/Chat')
   res.render('chat', { page: 'Chat Web' })
 })
+
+// router.get('/authorized/chat', function (req, res) {
+//   res.header('Authorization', req.headers.authorization)
+//   res.redirect('/authorize/chat')
+//   // res.render('chat', { page: 'Chat Web' })
+// })
 
 // ####################################
 router.get('/users', jwtCheckAuth, function (req, res) {

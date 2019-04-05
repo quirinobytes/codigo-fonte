@@ -45,8 +45,6 @@ function login () {
     if (xhttp.readyState === 4) {
       var response = xhttp.responseText
       
-      // document.getElementById('token-display').innerHTML = response
-      // document.getElementById('jwtJSON').innerHTML = response
       console.log('response=' + response)
 
       var json = response;
@@ -79,12 +77,12 @@ function getURL_inContainer(url) {
   var xhttp = new XMLHttpRequest()
   var jwtData = localStorage.getItem('jwtJSON')
   var jwtObj = JSON.parse(jwtData)
-  toastr.success('Url: ' + url + 'loaded successfully')
+  toastr.success('Url ["' + url + ']: carregada com sucesso!')
   xhttp.open('GET', url, true)
   xhttp.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
   xhttp.send()
   //window.open(url)
-  xhttp.onload = function () {  document.getElementById('container').innerHTML = this.responseText }
+  xhttp.onload = function () {  document.getElementById('container').innerHTML = this.responseText ; chat }
 }
 
 // function loadRequestInHTML () {
@@ -94,11 +92,7 @@ function getURL_inContainer(url) {
 //   // document.innerHTML = this.responseText
 //   // document.location.reload()
 // }
-function loadRequestInBody () {
-  document.getElementById('body').innerHTML = this.responseText
-  // window.open("","", this.responseText)
-  // document.location.reload()
-}
+
 
 function setToken (jwtJSON) {
   console.log('funcao setToken')
@@ -155,7 +149,3 @@ window.onload = function () {
   }
   //toaster.success('Have fun storming the castle!', 'Miracle Max Says')
 }
-
-
-
-
