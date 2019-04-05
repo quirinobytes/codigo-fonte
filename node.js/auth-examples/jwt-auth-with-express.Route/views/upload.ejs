@@ -1,0 +1,53 @@
+<html>
+    <head>
+            <% include partials/head %>
+    </head>
+    <body id='body'>
+            <% include partials/menu %>
+        <h1> Upload's Page</h1>
+    </body>
+</html>
+
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+    <title>Servidor - Push Notification </title>
+  </head>
+
+  <body>
+      <section id="titulo">
+        <header>
+          <h3>upload.js</h3>
+        </header>
+      </section>
+    <section>
+      <div id="change_username">
+        <input id="username" type="text" />
+        <button id="send_username" type="button">define filename</button>
+      </div>
+    </section>
+
+    <section id="chatroom">
+        <section id="filebox">
+          <h4> fileupload/ </h4>
+          <hr>
+          <table><th>arquivos</th>
+              <% for (item of items) {%>
+                <tr><td>
+                <a href='./deletefile/<%= item %>'>
+                  X
+                </a>
+                &nbsp; - &nbsp;<%= item %> &nbsp;
+              </td></tr>
+              <% } %>
+            </table>
+        </section>
+    </section>
+
+    <section id="input_zone">
+      <form action="fileupload" method="post" enctype="multipart/form-data">
+        <input type="file" name="filetoupload">
+        <input type="submit">
+      </form>
+    </section>
+  </body>
+</html>

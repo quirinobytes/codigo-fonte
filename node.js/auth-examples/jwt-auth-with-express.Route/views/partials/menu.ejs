@@ -1,19 +1,17 @@
-<script src="/javascript-manager-front-end-auth.js" lang='text/javascript' crossorigin="anonymous"> </script>
-<link rel="stylesheet" href="/style.css" crossorigin="anonymous">
 <div class="menu">
-    <div class="itens"> 
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('/index')">Home</button>
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('./admin')">Admin</button>
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('./users')">Usuarios</button>
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('./chat')">Chat</button>
-            <button type="button" class="btn btn-primary" onclick="showToken();"> Show Token</button>
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('./upload')">Upload</button>
-            <button type="button" class="btn btn-primary" onclick="getURL_inBody('./about')">Sobre o Cdshell</button>
-            <div id='logged_user' class='logged_user'>
-                <a id='a_logged_user' href="" onclick="logout();" > Logout </a>
-            </div>
+  <div class="itens"> 
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('/index');">Home</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./admin')">Admin</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./users');">Usuarios</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./authorized/chat' );">Chat</button>
+        <button type="button" class="btn btn-primary" onclick="showToken();"> Show Token</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./upload')">Upload</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./about')">Sobre o Cdshell</button>
+        <div id='logged_user' class='logged_user'>
+            <a id='a_logged_user' href="" onclick="logout();" > Logout </a>
+        </div>
     </div>
     <div id='events' class='logged_user'>
     </div>
- </div>
+</div>
 

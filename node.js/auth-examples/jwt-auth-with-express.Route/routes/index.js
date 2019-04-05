@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken')
 const exjwt = require('express-jwt')
 const path = require('path')
 const fs = require('fs')
+// Formidable para upload de arquivos
+var formidable = require('formidable')
 
 //  const accountRoutes = require('./account.js')
 const jwtCheckAuth = exjwt({
@@ -34,7 +36,7 @@ router.use(compression())
 router.get('/', function (req, res) {
   res.redirect('/index')
 })
-//####################################
+// ####################################
 // Fazendo uma rota com middlewqare(controller) rootRoutes.login
 router
   .get('/login', loginController.login)
@@ -47,14 +49,14 @@ router
         // If all credentials are correct do this
         let token = jwt.sign({ id: user.id, username: user.username }, 'moto4ever', { expiresIn: 129600 }); // Sigining the token
         res.json({
-          sucess: true,
+          success: true,
           err: null,
           token
         })
         break
       } else {
         res.status(401).json({
-          sucess: false,
+          success: false,
           token: null,
           err: 'Username or password is incorrect'
         })
@@ -66,11 +68,13 @@ router.post('/getusers', jwtCheckAuth, (req, res) => {
   var users = [
     {
       name: 'admin',
-      password: '123'
+      password: '123',
+      role: 'admin'
     },
     {
       name: 'rafael',
-      password: 'rafa123'
+      password: 'rafa123',
+      role: 'user'
     }
   ]
   var user_list = []
@@ -90,11 +94,23 @@ router.get('/admin', jwtCheckAuth, function (req, res) {
 // ####################################
 router.get('/chat', jwtCheckAuth, function (req, res) {
   console.log('cheguei na Chat')
-  res.render('chat')
+ // console.log(req.headers.authorization)
+  res.header('Authorization', req.headers.authorization)
+  res.redirect('/authorize/chat')
+  // res.render('chat', { page: 'Chat Web' })
+})
+router.get('/authorized/chat', function (req, res) {
+  console.log('cheguei na Autorized/Chat')
+  res.render('chat', { page: 'Chat Web' })
 })
 
 // ####################################
-router.get('/index', jwtCheckAuth, function (req, res) {
+router.get('/users', jwtCheckAuth, function (req, res) {
+  res.render('users', { page: 'User Manager', users: users })
+})
+
+// ####################################
+router.get('/index',jwtCheckAuth,  function (req, res) {
   console.log('cheguei na Index')
   res.render('index', { page: 'Home Pages' })
 })
@@ -103,6 +119,27 @@ router.get('/index', jwtCheckAuth, function (req, res) {
 router.get('/menu', jwtCheckAuth, function (req, res) {
   res.sendFile('menu.html', {
     root: path.join(__dirname, '../views/')
+  })
+})
+
+// ####################################
+router.get('/upload', jwtCheckAuth, function (req, res) {
+  var path = './fileupload/'
+  // abre o diretorio path e renderiza para o ejs renderizar o arquivo upload.ejc com a var items
+  fs.readdir(path, (err, files) => res.render('upload', { page: 'Home Pages', items: files }))
+})
+
+router.post('/fileupload', function (req, res) {
+  var form = new formidable.IncomingForm()
+  form.parse(req, function (err, fields, files) {
+    var oldpath = files.filetoupload.path
+    var newpath = './fileupload/' + files.filetoupload.name
+    fs.rename(oldpath, newpath, function (err) {
+      if (err) throw err
+        // res.write('File uploaded and moved!');
+        res.redirect ('./upload')
+        res.end()
+    })
   })
 })
 

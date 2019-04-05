@@ -33,6 +33,7 @@ function logout () {
     destroyToken()
     delete this.jwtJSON
     document.getElementById('logged_user').innerHTML = '<a href="" onclick="login();" > Login </a>'
+    //toastr.info('Are you the 6 fingered man?')
   } else {
     console.log('nao havia token para destruir.')
   }
@@ -43,25 +44,28 @@ function login () {
   xhttp.onreadystatechange = function () {
     if (xhttp.readyState === 4) {
       var response = xhttp.responseText
-      //document.getElementById('token-display').innerHTML = response
-      //document.getElementById('jwtJSON').innerHTML = response
+      
+      // document.getElementById('token-display').innerHTML = response
+      // document.getElementById('jwtJSON').innerHTML = response
       console.log('response=' + response)
 
       var json = response;
       var obj = JSON.parse(json)
 
       // Caso logado com sucesso, cria o localStorage com o jwtJSON
-      if (obj.sucess) {
+      if (obj.success) {
         this.token = obj.token
         localStorage.setItem('jwtJSON', response)
         token = obj.token
         let jwtUser = token.split('.')[1]
         let decodedJwtJsonUser = window.atob(jwtUser)
         let decodedJwtUser = JSON.parse(decodedJwtJsonUser)
-
-        getURL_inBody('/index')
+        
+        getURL_inContainer('/index')
 
         // document.getElementById('logged_user').innerHTML = '<a href="" onclick="account(\'' + decodedJwtJsonUser.username + "');\" > " + decodedJwtJsonUser.username +' </a>' + '<a href="" onclick="logout();" > Logout </a>'
+      } else {
+        toastr.warning('Usuario ou senha invalidos')
       }
       console.log('Token = ' + obj.token)
     }
@@ -71,19 +75,29 @@ function login () {
   xhttp.send(JSON.stringify(data))
 }
 
-function getURL_inBody(url) {
+function getURL_inContainer(url) {
   var xhttp = new XMLHttpRequest()
   var jwtData = localStorage.getItem('jwtJSON')
   var jwtObj = JSON.parse(jwtData)
-
-  xhttp.open('GET', url)
+  toastr.success('Url: ' + url + 'loaded successfully')
+  xhttp.open('GET', url, true)
   xhttp.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
   xhttp.send()
-  xhttp.onload = loadRequestInHTML
+  //window.open(url)
+  xhttp.onload = function () {  document.getElementById('container').innerHTML = this.responseText }
 }
 
-function loadRequestInHTML () {
-  document.getElementById('html').innerHTML = this.responseText
+// function loadRequestInHTML () {
+//   //console.log(this.responseText)
+//   document.getElementById('html').innerHTML = this.responseText
+
+//   // document.innerHTML = this.responseText
+//   // document.location.reload()
+// }
+function loadRequestInBody () {
+  document.getElementById('body').innerHTML = this.responseText
+  // window.open("","", this.responseText)
+  // document.location.reload()
 }
 
 function setToken (jwtJSON) {
@@ -139,4 +153,9 @@ window.onload = function () {
     document.getElementById('logged_user').innerHTML = this.username + '<a href="" onclick="logout();" > Logout </a>'
     document.getElementById('logged_user').innerHTML = '<a href="" onclick="account(\'' + this.username + "');\" > " + this.username + ' </a>' + '<a href="" onclick="logout();" > Logout </a>'
   }
+  //toaster.success('Have fun storming the castle!', 'Miracle Max Says')
 }
+
+
+
+

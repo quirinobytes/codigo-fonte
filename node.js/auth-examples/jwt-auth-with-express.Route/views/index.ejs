@@ -1,17 +1,17 @@
-<html id='html'>
+<!-- <html id='html'>
 <head>
         <% include partials/head %>        
         <% include partials/menu %>
+       
 </head>
-    <body id="body">
+<body id='body'> -->
         <div id="jwtJSON" style="display:flex">{"sucess":false,"token":null,"err":"Username or password is incorrect"}</div>
         <h3 class="text-center">Cdshell Login</h3>
-        <button type="button" class="btn btn-primary center-block" onclick="logout()">Logout</button>
+        <button type="button" class="btn btn-primary center-block" onclick="logout();" >Logout</button>
         <div id='container' >
         </div>
-        <div class="container">
-            <form>
-                <div class="form-group">
+        <div class="board margem">
+               <div class="form-group">
                 
                 <label for="username">Username</label>
                 <input type="text" class="form-control" id="username" placeholder="Username" required>
@@ -21,13 +21,13 @@
                     <input type="password" class="form-control" id="password" placeholder="Password">
                 </div>
                 <button type="button" class="btn btn-primary center-block" onclick="login()">Login</button>
-            </form>
+           
             <div id="token-display">
             </div>
         </div>
         </br>
         </br>
-        <div class="container">
+        <div class="board margem">
             <form>
                 <div class="form-group">
                     <label for="token">Username</label>
@@ -39,7 +39,7 @@
             <div id="list">
             </div>
         </div>
-        <div id='result' class="container">
+        <div id='result' class="board margem">
                 <form>
                     <div class="form-group">
                         <label for="token">Root Page</label>
@@ -83,6 +83,7 @@
                 //console.log(token);
                 xhttp.setRequestHeader( 'Authorization', 'Bearer ' + token );
                 xhttp.send();
+              
                 
                 
             }
@@ -113,6 +114,7 @@
                 
             }
         </script>
-    </body>
-</html>
+       
+    <!-- </body>
+</html> -->
 

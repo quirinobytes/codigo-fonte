@@ -1,6 +1,10 @@
 <html id='html'>
 <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" lang="text/javascript"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/toastr.js" lang='text/javascript' crossorigin="anonymous"> </script>
     <script src="/javascript-manager-front-end-auth.js" lang='text/javascript' crossorigin="anonymous"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
     <script lang="text/javascript">
     // funcao para amarrar o enter como default do Login
         window.onload = function(){
@@ -11,13 +15,17 @@
             })
         }
     </script>
-<link rel="stylesheet" href="/login.css" crossorigin="anonymous">
+    <!-- <script src="/chat.js"> </script> -->
+<link rel="stylesheet" href="/login.css" crossorigin="anonymous" type="text/css">
+<link rel="stylesheet" href="/style.css" crossorigin="anonymous" type="text/css">
+<link rel="stylesheet" href="/toastr.css" crossorigin="anonymous" type="text/css">
+<link rel="stylesheet" href="/chat.css" crossorigin="anonymous" type="text/css"> 
 </head>
-<body>
-
-<div class='board'>
-    <div id='container' class='container'>
-   
+<body class='body margem'>
+<div class='board '>
+    <div id='container'>
+      <div class='loginboard'>
+   <!-- <form action="login" method="POST"> -->
         <div class="imgcontainer">
           <img src="/img/img_avatar.png" alt="Avatar" class="avatar">
         </div>
@@ -38,10 +46,11 @@
       
         <div class="container" style="background-color:#f1f1f1">
           <button type="button" class="cancelbtn">Cancel</button>
-          <span class="psw">Forgot <a href="#">password?</a></span>
+          <span class="psw"><a href="#">&nbsp; Forgot password? &nbsp;</a>&nbsp;&nbsp; </span>
         </div>
-    
-    </div>          
+      </div>
+   </div>
 </div>
+
 </body>
 </html>

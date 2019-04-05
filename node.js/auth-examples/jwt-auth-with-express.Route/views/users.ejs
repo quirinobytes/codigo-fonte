@@ -1,0 +1,21 @@
+<html>
+    <head> 
+       <% include partials/head %>
+       <% include partials/menu %>
+    </head>
+    <body id='body'>
+         
+            <%= ;%>
+            <div class="board margem">
+            <table> 
+            <% for (var i=0; i < Object.keys(users).length; i++ ) { %>
+                <tr>
+                  <td>
+                    <%= users[i].username %> -  <%= users[i].password %>
+                  </td>
+                </tr>
+             <% } %>
+            </table>
+        </div>
+    </body>
+</html>

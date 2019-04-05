@@ -1,28 +1,46 @@
+
+.body {
+    text-align: center;
+    border-spacing: 5px;
+}
+
+.margem {
+  margin-inline-start: 10%;
+  margin-inline-end: 10%;
+  padding: 5px;
+  margin-top: 5%;
+}
+
 div.menu {
     background-color: #333;
     text-align: center;
-    width: 80%;
-   
-   }
+    /* width: 60%; */
+    /* float: inline-end; */
+    border-radius: 10px;
+    padding: 10px;
+    /* margin-inline-start: 20%; */
+    margin-top: 1%;
+}
 
-  div.itens {
+div.itens {
     background-color: #333;
-    white-space: nowrap;
+    /* white-space: nowrap; */
     float: center;
-    padding-block-start: 8px;
+    padding-block-start: 4px; 
     padding-left: 5px;
-    height: 55px;
-  }
+    /* height: 50px; */
+}
 
-  div.logged_user {
+div.logged_user {
     background-color: #333;
     white-space: nowrap;
     float: right;
-    height: 14px;;
-  }
+    height: 14px;
+    margin-top: 7px;
+    font-size: 4 ;
+}
   
-  div.itens a, div.logged_user a {
-    display: inline-flex;
+div.itens a, div.logged_user a {
     color: white;
     text-align: center;
     padding: 10px;
@@ -30,12 +48,39 @@ div.menu {
     margin-left: 10px;
     margin-right: 10px;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-  }
-  
+}
 
+div.logged_user a:hover{
+  background-color: #777;
+  border-radius: 10px;
+}
   
-  div.scrollmenu a:hover {
+div.scrollmenu a:hover {
     background-color: #777;
-  }
+}
+
+.loginboard {
+    padding: 6px;
+    width: 350px;
+    text-align: center;
+    border: 3px solid #5fadb8;
+    background-color: rgb(168, 206, 180);
+    border-radius: 20px;
+}
+
+.container{
+    width: 90%;
+}
+.board {
+    border-radius: 20px;
+    margin: 0 auto;
+    color: white;
+    display: inline-block;
+    border: 1px solid #5fadb8;
+    padding: 10px;
+    background-color: rgba(230, 230, 230, 0.877);
+    color:black;
+}
+  
