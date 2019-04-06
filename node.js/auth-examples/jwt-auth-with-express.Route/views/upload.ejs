@@ -19,14 +19,16 @@
      
       <section id="chatroom">
         <section id="filebox" class="filebox">
-            <table>
+            <table >
               <% for (item of items) {%>
-                <tr><td>
-                <a onclick="deleteFile('<%= item %> ' );">
-                  X
-                </a>
-                &nbsp; - &nbsp;<%= item %> &nbsp;
-              </td></tr>
+                <tr>
+                  <td class='upload'>
+                    <button class="btn btn-danger btn-block btn-xs" onclick="deleteFile('<%= item %> ' );">&nbsp; X &nbsp; </button>
+                  </td>
+                  <td>
+                    &nbsp;&nbsp;&nbsp; <%= item %>
+                  </td>
+                </tr>
               <% } %>
             </table>
         </section>

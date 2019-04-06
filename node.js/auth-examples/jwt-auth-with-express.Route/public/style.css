@@ -136,7 +136,7 @@ section#titulo {
     padding: 5px;
     display: block;
     color: white;
-    font-size: 10px;
+    font-size: 30px;
 }
 
 section#input_zone {
@@ -170,4 +170,8 @@ progress {
   progress::-moz-progress-bar {
     background-color: white;
     /* style rules */
+  }
+
+  .upload{
+      padding: 3px;
   }

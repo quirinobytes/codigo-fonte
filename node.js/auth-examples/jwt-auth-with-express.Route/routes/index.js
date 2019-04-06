@@ -68,6 +68,7 @@ router
         retornaErro401 = true
       }
     }
+    // resolve o problema de retornar para usuarios que nao encontra.
     if (retornaErro401 === true) {
       // isso aqui tem que ficar fora do For, senha nao percorre todos os users, e responde null antes da hora.
       res.status(401).json({
