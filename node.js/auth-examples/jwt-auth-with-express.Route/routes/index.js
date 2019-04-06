@@ -138,22 +138,36 @@ router.get('/menu', jwtCheckAuth, function (req, res) {
 })
 
 // ####################################
-router.get('/upload', jwtCheckAuth, function (req, res) {
+router.get('/upload', function (req, res) {
   var path = './fileupload/'
   // abre o diretorio path e renderiza para o ejs renderizar o arquivo upload.ejc com a var items
   fs.readdir(path, (err, files) => res.render('upload', { page: 'Home Pages', items: files }))
 })
 
 router.post('/fileupload', function (req, res) {
+  let token = req.headers.authorization
   var form = new formidable.IncomingForm()
   form.parse(req, function (err, fields, files) {
     var oldpath = files.filetoupload.path
     var newpath = './fileupload/' + files.filetoupload.name
+
     fs.rename(oldpath, newpath, function (err) {
-      if (err) throw err
-        // res.write('File uploaded and moved!');
-        res.redirect ('./upload')
-        res.end()
+      
+      if (err){
+        throw err
+        res.status(401).json({
+          success: false,
+          token: null,
+          err: 'Username or password is incorrect'
+        })
+      } else {
+
+        res.json({
+          success: true,
+          message: 'Arquivo subido', // + //filename + ' excluido.',
+          token
+        })
+      }
     })
   })
 })
@@ -164,6 +178,32 @@ router.get('/favicon.ico', function (req, res) {
   res.sendFile('favicon.ico', {
     root: path.join(__dirname, '../img/')
   })
+})
+
+router.get('/deletefile/:filename', function (req,res) {
+
+  const filename = req.params.filename
+  const path = './fileupload/'
+  let token = req.headers.authorization
+
+  //responder certinho neh.
+  try {
+    fs.unlinkSync(path+filename)
+    console.log("Arquivo apagado="+filename)
+    res.json({
+      success: true,
+      message: 'Arquivo ' + filename + ' excluido.',
+      token
+    })
+  } catch(err) {
+    console.error(err)
+    res.status(401).json({
+      success: false,
+      token: token,
+      err: 'Falha ao excluir arquivo.',
+      message: 'Falha ao excluir arquivo: ' + filename
+    })
+  }
 })
 
 // router.use('/account', accountRoutes)

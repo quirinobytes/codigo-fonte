@@ -84,6 +84,20 @@ function getURL_inContainer(url) {
  //window.open(url)
   xhttp.onload = function (nome) {  
     document.getElementById('container').innerHTML = this.responseText
+  }
+}
+
+function getCHAT_inContainer(url) {
+  var xhttp = new XMLHttpRequest()
+  var jwtData = localStorage.getItem('jwtJSON')
+  var jwtObj = JSON.parse(jwtData)
+  toastr.success('Url ["' + url + ']: carregada com sucesso!')
+  xhttp.open('GET', url, true)
+  xhttp.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
+  xhttp.send()
+ //window.open(url)
+  xhttp.onload = function (nome) {  
+    document.getElementById('container').innerHTML = this.responseText
 
     // a jogada  aqui
     //
@@ -102,6 +116,102 @@ function getURL_inContainer(url) {
   }
 }
 
+function deleteFile(filename) {
+  var xrequest = new XMLHttpRequest()
+  var jwtData = localStorage.getItem('jwtJSON')
+  var jwtObj = JSON.parse(jwtData)
+  xrequest.open('GET', '/deletefile/' + filename, true)
+  xrequest.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
+  xrequest.send()
+  xrequest.onload = function () {  
+    var json = xrequest.responseText;
+    var obj = JSON.parse(json)
+    token = obj.token
+    let jwtUser = token.split('.')[1]
+    let decodedJwtJsonUser = window.atob(jwtUser)
+    let decodedJwtUser = JSON.parse(decodedJwtJsonUser)
+    if (obj.success) {
+      toastr.success(obj.message)
+      getURL_inContainer('/upload')
+    } else {
+      toastr.error(obj.message)
+      getURL_inContainer('/upload')
+    }
+  } 
+}
+
+function uploadFile(){
+  //cabecalho neh kkk pra pegar o token no ocalstorage
+  var xrequest = new XMLHttpRequest()
+  var jwtData = localStorage.getItem('jwtJSON')
+  var jwtObj = JSON.parse(jwtData)
+
+  //var url = "/ReadMoveWebServices/WSUploadFile.asmx/UploadFile";
+  var url = "/fileupload";
+  var archivoSeleccionado = document.getElementById("myfile");
+  var file = archivoSeleccionado.files[0];
+  var fd = new FormData();
+  fd.append("filetoupload", file);
+  var xmlHTTP = new XMLHttpRequest();
+  //xmlHTTP.upload.addEventListener("loadstart", loadStartFunction, false);
+  xmlHTTP.upload.addEventListener("progress", progressFunction, false);
+  xmlHTTP.addEventListener("load", transferCompleteFunction, false);
+  xmlHTTP.addEventListener("error", uploadFailed, false);
+  xmlHTTP.addEventListener("abort", uploadCanceled, false);
+
+
+  xmlHTTP.open("POST", url, true);
+  xmlHTTP.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
+
+  //xmlHTTP.setRequestHeader('book_id','10');
+  xmlHTTP.send(fd);
+  xmlHTTP.onload = function () {  
+    var json = xmlHTTP.responseText;
+    var obj = JSON.parse(json)
+    token = obj.token
+    let jwtUser = token.split('.')[1]
+    let decodedJwtJsonUser = window.atob(jwtUser)
+    let decodedJwtUser = JSON.parse(decodedJwtJsonUser)
+    if (obj.success) {
+      toastr.success(obj.message)
+      getURL_inContainer('/upload')
+    } else {
+      toastr.error(obj.message)
+      getURL_inContainer('/upload')
+    }
+  }
+ }
+
+ function progressFunction(evt){
+  var progressBar = document.getElementById("progressBar");
+  var percentageDiv = document.getElementById("percentageCalc");
+  if (evt.lengthComputable) {
+      progressBar.max = evt.total;
+      progressBar.value = evt.loaded;
+      percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
+  }
+}
+
+function loadStartFunction(evt){
+  alert('Comenzando a subir el archivo');
+}
+
+function transferCompleteFunction(evt){
+  //alert('Transferencia completa');
+  var progressBar = document.getElementById("progressBar");
+  var percentageDiv = document.getElementById("percentageCalc");
+  progressBar.value = 100;
+  percentageDiv.innerHTML = "100%";
+}
+
+function uploadFailed(evt) {
+  alert("Houve algum erro ao subir o arquivo");
+}
+
+function uploadCanceled(evt) {
+  //alert("Operacao cancelada ou interrompida.");
+  
+}
 // function getChat_inContainer(url) {
 //   getURL_inContainer(url)
 //   chat ('kkkk')
@@ -113,6 +223,39 @@ function getURL_inContainer(url) {
 //   // document.innerHTML = this.responseText
 //   // document.location.reload()
 // }
+function selectedFile() {
+  var archivoSeleccionado = document.getElementById("myfile");
+  var file = archivoSeleccionado.files[0];
+     if (file) {
+         var fileSize = 0;
+         if (file.size > 1048576)
+            fileSize = (Math.round(file.size * 100 / 1048576) / 100).toString() + ' MB';
+         else
+            fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + ' Kb';
+         var divfileSize = document.getElementById('fileSize');
+         var divfileType = document.getElementById('fileType');
+         divfileSize.innerHTML = 'Tamaño: ' + fileSize;
+         divfileType.innerHTML = 'Tipo: ' + file.type;
+      }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 function setToken (jwtJSON) {

@@ -18,22 +18,13 @@
           <h3>Upload</h3>
         </header>
       </section>
-    <section>
 
-      <div id="change_username">
-        <input id="username" type="text" />
-        <button id="send_username" type="button">define filename</button>
-      </div>
-    </section>
-
-    <section id="chatroom">
+      <section id="chatroom">
         <section id="filebox" class="filebox">
-          <h4> fileupload/ </h4>
-          <hr>
-          <table><th>arquivos</th>
+            <table>
               <% for (item of items) {%>
                 <tr><td>
-                <a href='./deletefile/<%= item %>'>
+                <a onclick="deleteFile('<%= item %> ' );">
                   X
                 </a>
                 &nbsp; - &nbsp;<%= item %> &nbsp;
@@ -44,10 +35,26 @@
     </section>
 
     <section id="input_zone">
-      <form action="fileupload" method="post" enctype="multipart/form-data">
+      
+      
+      <!-- <form id='the-form-upload' action="fileupload" method="post" enctype="multipart/form-data">
         <input type="file" name="filetoupload">
         <input type="submit">
-      </form>
+      </form> -->
+
+      <div id="wrap">
+          <div class="field">
+              <ul class="options">
+                 <li><input type="file" id="myfile" name="myfile" class="rm-input" onchange="selectedFile();"/></li>
+                 <li><div id="fileSize"></div></li>
+                 <li><div id="fileType"></div></li>
+                 <li><input type="button" value="Subir Archivo" onClick="uploadFile()" class="rm-button" /></li>
+              </ul>
+          </div>
+          <progress id="progressBar" value="0" max="100" class="rm-progress"></progress>
+          <div id="percentageCalc"></div>
+       </div>
+
     </section>
   </body>
 </html>

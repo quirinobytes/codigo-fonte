@@ -25,6 +25,12 @@ var config = {
         username: 'quirinobytes',
         password: 'xman',
         role: 'user'
+      },
+      {
+        id: 3,
+        username: 'felipe',
+        password: 'bro123',
+        role: 'user'
       }
     ]
   }
