@@ -139,7 +139,7 @@ function deleteFile(filename) {
     }
   } 
 }
-
+// ####################### UPLOAD ############
 function uploadFile(){
   //cabecalho neh kkk pra pegar o token no ocalstorage
   var xrequest = new XMLHttpRequest()
@@ -209,9 +209,13 @@ function uploadFailed(evt) {
 }
 
 function uploadCanceled(evt) {
-  //alert("Operacao cancelada ou interrompida.");
+  alert("Operacao cancelada ou interrompida.");
   
 }
+// ####################### UPLOAD ############
+
+
+
 // function getChat_inContainer(url) {
 //   getURL_inContainer(url)
 //   chat ('kkkk')
