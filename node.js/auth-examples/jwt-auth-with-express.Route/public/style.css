@@ -84,3 +84,52 @@ div.logged_user a:hover{
 div.scrollmenu a:hover {
     background-color: #777;
 }
+
+div#field{
+    text-align: justify;
+    display: inline;
+}
+div#inputFile{
+    text-align: right;
+    display: inline;
+    float: left;
+}
+div#fileSize{
+    text-align: right;
+    display: inline;
+    float: center;
+}
+div#fileType{
+    text-align: right;
+    display: inline;
+    float: center;
+}
+
+ /* .rm-progress{
+    width: 100%;
+    margin-left: -11.5%;
+    height: 3px;
+    background-color: #0091EA;
+    color: white;
+} */
+ 
+
+progress {
+    border-radius: 2px; 
+    width: 100%;
+    height: 5px;
+    background-color: black;
+    /* margin-left:-11.5%; */
+  }
+  progress::-webkit-progress-bar {
+    background-color: rgb(102, 119, 156);
+    border-radius: 2px;
+  }
+  progress::-webkit-progress-value {
+    background-color: rgb(27, 56, 134);
+    background-color: white;
+     border-radius: 2px; 
+  }
+  progress::-moz-progress-bar {
+    /* style rules */
+  }

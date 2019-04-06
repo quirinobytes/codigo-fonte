@@ -18,7 +18,7 @@
           <h3>Upload</h3>
         </header>
       </section>
-
+      <progress id="progressBar" value="0" max="100" class="rm-progress"></progress>
       <section id="chatroom">
         <section id="filebox" class="filebox">
             <table>
@@ -43,18 +43,14 @@
       </form> -->
 
       <div id="wrap">
-          <div class="field">
-              <ul class="options">
-                 <li><input type="file" id="myfile" name="myfile" class="rm-input" onchange="selectedFile();"/></li>
-                 <li><div id="fileSize"></div></li>
-                 <li><div id="fileType"></div></li>
-                 <li><input type="button" value="Subir Archivo" onClick="uploadFile()" class="rm-button" /></li>
-              </ul>
+          <div id='field' class="field">
+                   <div id="inputFile"><input type="file" id="myfile" name="myfile" class="rm-input" onchange="selectedFile();"/></div>
+                   <div id="fileSize"></div>
+                   <div id="fileType"></div>
+                   <input type="button" value="Enviar" onClick="uploadFile()" class="rm-button" />
           </div>
-          <progress id="progressBar" value="0" max="100" class="rm-progress"></progress>
           <div id="percentageCalc"></div>
        </div>
-
     </section>
   </body>
 </html>

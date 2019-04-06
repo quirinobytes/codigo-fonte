@@ -131,7 +131,8 @@ function deleteFile(filename) {
     let decodedJwtJsonUser = window.atob(jwtUser)
     let decodedJwtUser = JSON.parse(decodedJwtJsonUser)
     if (obj.success) {
-      toastr.success(obj.message)
+      //toastr: arquivo excluido com sucesso
+      toastr.warning(obj.message)
       getURL_inContainer('/upload')
     } else {
       toastr.error(obj.message)
@@ -192,25 +193,26 @@ function uploadFile(){
   }
 }
 
-function loadStartFunction(evt){
-  alert('Comenzando a subir el archivo');
+function loadStartFunction (evt) {
+  toastr.warning('Comecando a subir o arquivo')
 }
 
-function transferCompleteFunction(evt){
-  //alert('Transferencia completa');
-  var progressBar = document.getElementById("progressBar");
-  var percentageDiv = document.getElementById("percentageCalc");
-  progressBar.value = 100;
-  percentageDiv.innerHTML = "100%";
+function transferCompleteFunction (evt){
+  // alert('Transferencia completa');
+  var progressBar = document.getElementById('progressBar')
+  var percentageDiv = document.getElementById('percentageCalc')
+  progressBar.value = 100
+  percentageDiv.innerHTML = '100%'
 }
 
-function uploadFailed(evt) {
-  alert("Houve algum erro ao subir o arquivo");
+function uploadFailed (evt) {
+  //alert("Houve algum erro ao subir o arquivo");
+  toastr.error('Houve algum erro ao subir o arquivo')
 }
 
-function uploadCanceled(evt) {
-  alert("Operacao cancelada ou interrompida.");
-  
+function uploadCanceled (evt) {
+  //alert("Operacao cancelada ou interrompida.");
+  toastr.error('Houve algum erro ao subir o arquivo')
 }
 // ####################### UPLOAD ############
 
