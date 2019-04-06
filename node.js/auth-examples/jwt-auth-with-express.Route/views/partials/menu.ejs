@@ -1,0 +1,20 @@
+<div class="menu">
+  <div class="itens"> 
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('/index');">Home</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./admin')">Admin</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./users');">Usuarios</button>
+        <button type="button" class="btn btn-primary" onclick="getCHAT_inContainer('./chat' ); ">Chat</button>
+        <button type="button" class="btn btn-primary" onclick="showToken();"> Show Token</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./upload')">Upload</button>
+        <button type="button" class="btn btn-primary" onclick="getURL_inContainer('./about')">Sobre o Cdshell</button>
+        <div id='logged_user' class='logged_user'>
+            <a id='a_logged_user' href="" onclick="logout();" > Logout </a>
+        </div>
+      <progress id="progressBar" value="0" max="100" class="rm-progress"></progress>
+    </div>
+   
+    <div id='events' class='logged_user'>
+            
+    </div>
+</div>
+

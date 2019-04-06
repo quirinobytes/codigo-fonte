@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html id='html'>
+  <head>
+      <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="/chat.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+          <% include partials/head %>        
+          <% include partials/menu %>
+          
+    <meta http-equiv="Content-Type" const="text/html;charset=UTF-8" />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/chat.css" >
+    <title>Servidor - Push Notification </title>
+  </head>
+  <body>
+    <section id="titulo">
+        <header>
+          Chat
+        </header>
+    </section>
+    
+    <section>
+      <div id="change_username">
+          
+          <div id="one">
+              <input id="username" type="text" value=" <%= username %> " />
+          </div>
+             
+          <div id="two">
+              <button id="send_username" type="button"> Definir apelido </button>
+          </div>
+      </div>
+    </section>
+    <section id="chatroom">
+      <section id="feedback"></section>
+    </section>
+    <section id="input_zone"> 
+      <input id="message" class="vertical-align" type="text" autofocus/>
+      <button id="files" class="vertical-align" type="button"> Enviar </button>
+    </section>
+
+    <script> document.onload = () => { 
+     console.log('kkkkkkkk')
+      chat();
+    } 
+     </script>
+
+  <!-- </body>
+</html> -->
