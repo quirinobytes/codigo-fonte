@@ -47,13 +47,14 @@ router.get('/', function (req, res) {
 router
   .get('/login', loginController.login)
   .post('/login', (req, res) => {
+    var retornaErro401 = false
     const { username, password } = req.body;
     console.log('req.body=' + req.body)
     // Use your DB ORM logic here to find user and compare password
     for (let user of users) { // I am using a simple array users which i made above
       console.log('entrou a vez do user= '+ user.username)
-      if (username === user.username && password === user.password /* Use your password hash checking logic here !*/)
-       {
+      // Use your password hash checking logic here ! 
+      if (username === user.username && password === user.password ) {
         // If all credentials are correct do this
         console.log('Usuario e senha certinho')
         let token = jwt.sign({ id: user.id, username: user.username }, 'moto4ever', { expiresIn: 129600 })
@@ -63,16 +64,19 @@ router
           token
         })
         break
-      } 
-        
+      } else {
+        retornaErro401 = true
       }
-      //isso aqui tem que ficar fora do For, senha nao percorre todos os users, e responde null antes da hora.
+    }
+    if (retornaErro401 === true) {
+      // isso aqui tem que ficar fora do For, senha nao percorre todos os users, e responde null antes da hora.
       res.status(401).json({
         success: false,
         token: null,
         err: 'Username or password is incorrect'
       })
-    })
+    }
+})
 
 router.post('/getusers', jwtCheckAuth, (req, res) => {
   var users = [
@@ -148,27 +152,33 @@ router.post('/fileupload', function (req, res) {
   let token = req.headers.authorization
   var form = new formidable.IncomingForm()
   form.parse(req, function (err, fields, files) {
-    var oldpath = files.filetoupload.path
-    var newpath = './fileupload/' + files.filetoupload.name
+    
+    // kkkkk esse eh estrategico para exainar o arquivo chegando.
+    // console.log(files)
+    if (files.filetoupload !== undefined ){
+      var oldpath = files.filetoupload.path
+      var newpath = './fileupload/' + files.filetoupload.name
 
-    fs.rename(oldpath, newpath, function (err) {
+      fs.rename(oldpath, newpath, function (err) {
       
-      if (err){
-        throw err
-        res.status(401).json({
-          success: false,
-          token: null,
-          err: 'Username or password is incorrect'
-        })
-      } else {
+        if (err){
+          throw err
+          res.status(401).json({
+            success: false,
+            token: null,
+            err: 'Username or password is incorrect'
+          })
+        } else {
 
-        res.json({
-          success: true,
-          message: 'Arquivo subido', // + //filename + ' excluido.',
-          token
-        })
-      }
+          res.json({
+            success: true,
+            message: 'Arquivo subido', // + //filename + ' excluido.',
+            token
+          })
+        }
     })
+  }
+      //if (files)
   })
 })
 

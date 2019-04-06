@@ -191,6 +191,7 @@ function uploadFile(){
       progressBar.value = evt.loaded;
       percentageDiv.innerHTML = Math.round(evt.loaded / evt.total * 100) + "%";
   }
+  
 }
 
 function loadStartFunction (evt) {
@@ -240,8 +241,8 @@ function selectedFile() {
             fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + ' Kb';
          var divfileSize = document.getElementById('fileSize');
          var divfileType = document.getElementById('fileType');
-         divfileSize.innerHTML = 'Tamaño: ' + fileSize;
-         divfileType.innerHTML = 'Tipo: ' + file.type;
+         divfileSize.innerHTML = 'Tamanho: ' + fileSize;
+         divfileType.innerHTML = 'Tipo: ' + JSON.stringify(file);
       }
   }
 
