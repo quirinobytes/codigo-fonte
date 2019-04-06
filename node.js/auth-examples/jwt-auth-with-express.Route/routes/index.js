@@ -1,4 +1,5 @@
 require('rootpath')()
+var config = require('../config').get(process.env.NODE_ENV)
 const express = require('express')
 const rootController = require('./controllers/root')
 const loginController = require('./controllers/login')
@@ -8,6 +9,8 @@ const jwt = require('jsonwebtoken')
 const exjwt = require('express-jwt')
 const path = require('path')
 const fs = require('fs')
+const atob = require('atob')
+
 // Formidable para upload de arquivos
 var formidable = require('formidable')
 
@@ -16,18 +19,21 @@ const jwtCheckAuth = exjwt({
   secret: 'moto4ever'
 })
 
-let users = [
-  {
-    id: 1,
-    username: 'admin',
-    password: '123'
-  },
-  {
-    id: 2,
-    username: 'test2',
-    password: 'asdf12345'
-  }
-]
+//carregando os usuarios da config.
+let users = config.users
+
+// let users = [
+//   {
+//     id: 1,
+//     username: 'admin',
+//     password: '123'
+//   },
+//   {
+//     id: 2,
+//     username: 'test2',
+//     password: 'asdf12345'
+//   }
+// ]
 
 // ####################################
 
@@ -45,41 +51,45 @@ router
     console.log('req.body=' + req.body)
     // Use your DB ORM logic here to find user and compare password
     for (let user of users) { // I am using a simple array users which i made above
-      if (username === user.username && password === user.password /* Use your password hash checking logic here !*/) {
+      console.log('entrou a vez do user= '+ user.username)
+      if (username === user.username && password === user.password /* Use your password hash checking logic here !*/)
+       {
         // If all credentials are correct do this
-        let token = jwt.sign({ id: user.id, username: user.username }, 'moto4ever', { expiresIn: 129600 }); // Sigining the token
+        console.log('Usuario e senha certinho')
+        let token = jwt.sign({ id: user.id, username: user.username }, 'moto4ever', { expiresIn: 129600 })
         res.json({
           success: true,
           err: null,
           token
         })
         break
-      } else {
-        res.status(401).json({
-          success: false,
-          token: null,
-          err: 'Username or password is incorrect'
-        })
+      } 
+        
       }
-    }
-  })
+      //isso aqui tem que ficar fora do For, senha nao percorre todos os users, e responde null antes da hora.
+      res.status(401).json({
+        success: false,
+        token: null,
+        err: 'Username or password is incorrect'
+      })
+    })
 
 router.post('/getusers', jwtCheckAuth, (req, res) => {
   var users = [
     {
-      name: 'admin',
+      username: 'admin',
       password: '123',
       role: 'admin'
     },
     {
-      name: 'rafael',
+      username: 'rafael',
       password: 'rafa123',
       role: 'user'
     }
   ]
   var user_list = []
   users.forEach((user) => {
-    user_list.push({ 'name': user.name })
+    user_list.push({ 'name': user.username })
   })
   res.send(JSON.stringify({ users: user_list }))
 })
@@ -93,8 +103,14 @@ router.get('/admin', jwtCheckAuth, function (req, res) {
 
 // ####################################
 router.get('/chat', jwtCheckAuth, function (req, res) {
-  console.log('cheguei na Chat')
-  res.render('chat', { page: 'Chat Web' })
+  console.log('### CHAT=> Username=' + req.headers.authorization )
+  token = req.headers.authorization
+  let jwtUser = token.split('.')[1]
+  let decodedJwtJsonUser = atob(jwtUser)
+  let decodedJwtUser = JSON.parse(decodedJwtJsonUser)
+
+  console.log('cheguei na Chat/ LoggedUser:' + decodedJwtUser.username)
+  res.render('chat', { page: 'Chat Web', username: decodedJwtUser.username })
 })
 
 // router.get('/authorized/chat', function (req, res) {

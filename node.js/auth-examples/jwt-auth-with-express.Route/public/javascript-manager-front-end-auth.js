@@ -81,10 +81,31 @@ function getURL_inContainer(url) {
   xhttp.open('GET', url, true)
   xhttp.setRequestHeader( 'Authorization', 'Bearer ' + jwtObj.token)
   xhttp.send()
-  //window.open(url)
-  xhttp.onload = function () {  document.getElementById('container').innerHTML = this.responseText ; chat }
+ //window.open(url)
+  xhttp.onload = function (nome) {  
+    document.getElementById('container').innerHTML = this.responseText
+
+    // a jogada  aqui
+    //
+    // abre um chat e ja passa um username para ele chamar a socket.emit({username=username})
+    // esse chat esta no arquivo 
+    chat(document.getElementById('username').value)
+    
+
+    document.getElementById("message").addEventListener("keyup", event => {
+      if(event.key !== "Enter") return; // Use `.key` instead.
+          document.getElementById("send_message").click(); // Things you want to do.
+          event.preventDefault(); // No need to `return false;`.
+      })
+    
+
+  }
 }
 
+// function getChat_inContainer(url) {
+//   getURL_inContainer(url)
+//   chat ('kkkk')
+// }
 // function loadRequestInHTML () {
 //   //console.log(this.responseText)
 //   document.getElementById('html').innerHTML = this.responseText

@@ -1,8 +1,8 @@
-chat = () => {
+chat = (nameParam) => {
 
 	$(function(){
 		//make connection
-	 var socket = io.connect('https://hp/')
+	 var socket = io.connect('https://hp')
  
 	 // buttons and inputs
 	 var message = $("#message")
@@ -38,7 +38,13 @@ chat = () => {
 	 socket.on('typing', (data) => {
 		 feedback.html("<p><i>" + data.username + " is typing a message..." + "</i></p>")
 	 })
- });
+
+	 // Aqui esta a jogada para setar o username na instancia do Chat.
+	 socket.emit('username', {username : nameParam})
+
+	// ${message}.focus()
+ })
+ 
  
 
 }

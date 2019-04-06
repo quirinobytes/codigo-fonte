@@ -13,29 +13,34 @@
     <title>Servidor - Push Notification </title>
   </head>
   <body>
-
-      <section id="titulo">
-          <header>
-            <h3>Chat</h3>
-          </header>
-        </section>
-
-    <section>
-    <div id="change_username">
-		<input id="username" type="text" />
-		<button id="send_username" type="button">Definir nome</button>
-    </div>
+    <section id="titulo">
+        <header>
+          <h2>Chat</h2>
+        </header>
     </section>
-
+    
+    <section>
+      <div id="change_username">
+          <div id="one">
+              <input id="username" type="text" value=" <%= username %> " />
+          </div>
+              <button id="send_username" type="button">Definir nome</button>
+          <div id="two"></div>
+      </div>
+    </section>
     <section id="chatroom">
       <section id="feedback"></section>
     </section>
-
     <section id="input_zone"> 
-      <input id="message" class="vertical-align" type="text" />
+      <input id="message" class="vertical-align" type="text" autofocus/>
       <button id="send_message" class="vertical-align" type="button">Enviar</button>
     </section>
 
-    
+    <script> document.onload = () => { 
+     console.log('kkkkkkkk')
+      chat();
+    } 
+     </script>
+
   <!-- </body>
 </html> -->
