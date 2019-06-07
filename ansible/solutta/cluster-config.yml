@@ -1,0 +1,45 @@
+apiVersion: eksctl.io/v1alpha4
+kind: ClusterConfig
+
+metadata:
+  name: my-cluster
+  region: us-west-2
+
+vpc:
+  id: "vpc-xxxxxxxx"
+  cidr: "xxx.xxx.xxx.xxx/21"
+  subnets:
+    public:
+      us-west-2c: {id: "subnet-xxx"}
+      us-west-2b: {id: "subnet-xxx"}
+      us-west-2a: {id: "subnet-xxx"}
+
+nodeGroups:
+  - name: dev-t3-micro
+    ami: ami-xxx
+    labels: {pool: dev-t3-micro}
+    instanceType: t3.micro
+    desiredCapacity: 3
+    minSize: 1
+    maxSize: 5
+    volumeSize: 50
+    volumeType: gp2
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
+  - name: prod-c5-4xlarge
+    ami: ami-xxx
+    labels: {pool: prod-c5-4xlarge}
+    instanceType: c5.4xlarge
+    desiredCapacity: 3
+    minSize: 1
+    maxSize: 3
+    volumeSize: 50
+    volumeType: gp2
+    iam:
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
