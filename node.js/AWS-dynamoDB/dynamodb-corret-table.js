@@ -51,11 +51,14 @@ function onScan(err, data) {
   } else {
     console.log("Scan succeeded.");
     data.Items.forEach((data) => {
-      if (data.logradouro){
+      if (data.Id)
+        if (data.logradouro)
+        if (data.logradouro.numLogradouro){
         resultadoScan.push({"Id": data.Id, "numLogradouro": data.logradouro.numLogradouro})
         // console.log(data.Id)
         // console.log(data.logradouro.numLogradouro)
         // console.log('=================')
+        save2json(resultadoScan)
       }
     })
     if (typeof data.LastEvaluatedKey != "undefined") {
@@ -67,6 +70,10 @@ function onScan(err, data) {
       updateItems()
     }
   }
+}
+
+function save2json(json){
+   fs.writeFile('table_'+table+".json", json, function(err){ if (err) throw err; });
 }
 
 scanDb()
