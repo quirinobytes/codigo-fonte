@@ -2,7 +2,7 @@
 
 var fs = require('fs');
 var AWS = require('aws-sdk');
-var credentials = new AWS.SharedIniFileCredentials({profile: 'veloe-ppd'});
+var credentials = new AWS.SharedIniFileCredentials({profile: 'ambiente'});
 AWS.config.credentials = credentials;
 var table = "ArMestrePedidoEntregaHistorico"
 var docClient = new AWS.DynamoDB.DocumentClient()
