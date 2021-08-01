@@ -5,6 +5,10 @@ let jwt = require('jsonwebtoken');
 let config = require('./config');
 let middleware = require('./middleware');
 
+//Get ENV PORT or set 8000
+const port = process.env.PORT || 8000;
+
+
 class HandlerGenerator {
   login (req, res) {
     let username = req.body.username;
@@ -53,7 +57,6 @@ class HandlerGenerator {
 function main () {
   let app = express(); // Export app for other routes to use
   let handlers = new HandlerGenerator();
-  const port = process.env.PORT || 8000;
   app.use(bodyParser.urlencoded({ // Middleware
     extended: true
   }));
@@ -63,5 +66,9 @@ function main () {
   app.get('/', middleware.checkToken, handlers.index);
   app.listen(port, () => console.log(`Server is listening on port: ${port}`));
 }
+
+
+console.log("Iniciando a server-jwt-token-bearer")
+console.log("use curl -X POST http://localhost:"+port+ "/login --data username=admin --data password=senha");
 
 main();
