@@ -11,7 +11,7 @@ class HandlerGenerator {
     let password = req.body.password;
     // For the given username fetch user from DB
     let mockedUsername = 'admin';
-    let mockedPassword = 'password';
+    let mockedPassword = 'senha';
 
     if (username && password) {
       if (username === mockedUsername && password === mockedPassword) {
@@ -27,6 +27,8 @@ class HandlerGenerator {
           token: token
         });
       } else {
+        console.log("Incorrect username or password");
+        console.log("Request IP: " + req.connection.remoteAddress );
         res.send(403).json({
           success: false,
           message: 'Incorrect username or password'
