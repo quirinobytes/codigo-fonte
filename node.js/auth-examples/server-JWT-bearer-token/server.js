@@ -7,7 +7,7 @@ let middleware = require('./middleware');
 
 //Get ENV PORT or set 8000
 const port = process.env.PORT || 8000;
-
+var successLogins = 0;
 
 class HandlerGenerator {
   login (req, res) {
@@ -21,7 +21,7 @@ class HandlerGenerator {
       if (username === mockedUsername && password === mockedPassword) {
         let token = jwt.sign({username: username},
           config.secret,
-          { expiresIn: '24h' // expires in 24 hours
+          { expiresIn: '1m' // expires in 1m or 24h
           }
         );
         // return the JWT token for the future API calls
@@ -30,13 +30,18 @@ class HandlerGenerator {
           message: 'Authentication successful!',
           token: token
         });
-      } else {
-        console.log("Incorrect username or password");
+        successLogins+=1;
+        console.log(successLogins + " - Login success from: " + req.connection.remoteAddress);
         console.log("Request IP: " + req.connection.remoteAddress );
-        res.send(403).json({
+
+      } else {
+                res.send(403).json({
           success: false,
           message: 'Incorrect username or password'
         });
+        console.log("Incorrect username or password");
+        console.log("Request IP: " + req.connection.remoteAddress );
+
       }
     } else {
       res.send(400).json({
