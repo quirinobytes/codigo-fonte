@@ -63,6 +63,10 @@ status)
       fi
    fi
    ;;
+"")
+      echo Try $0 start, stop or status
+      exit 1;
+;;
 esac
 
 # Show full command line # ps -wfC "$cmd"
